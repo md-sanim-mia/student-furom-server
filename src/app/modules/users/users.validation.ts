@@ -1,0 +1,23 @@
+import { string, z } from "zod";
+import { BloodGroup } from "./users.const";
+
+const usersValidationSchema = z.object({
+  body: z.object({
+    name: z.string().nonempty("Name is required"),
+    email: z.string().email("Invalid email").nonempty("Email is required"),
+    phoneNumber: z.string().nonempty("Phone number is required"),
+    bloodGroup: z.enum([...BloodGroup] as [string, ...string[]]),
+    department: z.string().nonempty("Department is required"),
+    image: z.string().nonempty("Image is required"),
+    address: z.string().nonempty("Address is required"),
+    session: z.string().nonempty("Session is required"),
+    role: z.string().default("user").optional(),
+    year: z.string().nonempty("Year is required"),
+    status: z.enum(["in-progress", "block"]).default("in-progress").optional(),
+    designation: z.string().optional(),
+  }),
+});
+
+export const usersValidation = {
+  usersValidationSchema,
+};
