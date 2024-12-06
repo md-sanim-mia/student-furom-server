@@ -3,6 +3,7 @@ type TBloodGroup = "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "O+" | "O-";
 type TUser = {
   name: string;
   email: string;
+  password: string;
   phoneNumber: string;
   image: string;
   department: string;

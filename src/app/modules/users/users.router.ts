@@ -14,7 +14,12 @@ router.get("/get-users", usersContllors.getAllUsers);
 router.get("/:userId", usersContllors.getSingleUser);
 router.patch("/:userId", usersContllors.updateSingleUser);
 router.delete("/:userId", usersContllors.deleteSingleUser);
-router.patch("/:userId", usersContllors.blockSingleUser);
-router.patch("/:userId", usersContllors.activeSingleUser);
+router.patch("/black-user/:userId", usersContllors.blockSingleUser);
+router.patch("/active-user/:userId", usersContllors.activeSingleUser);
+router.patch(
+  "/add-designation/:userId",
+  usersContllors.addDesignationSingleUsers
+);
+router.post("/loging-user", usersContllors.logingUsers);
 
 export const usersRouters = router;

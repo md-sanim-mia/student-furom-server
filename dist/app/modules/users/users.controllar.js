@@ -29,6 +29,15 @@ const getAllUsers = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0
         data: result,
     });
 }));
+const logingUsers = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const playood = req.body;
+    const result = yield users_service_1.usersServices.logingUsersForDb(playood);
+    res.status(200).json({
+        success: true,
+        message: "get all users for db",
+        data: result,
+    });
+}));
 const getSingleUser = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId } = req.params;
     const result = yield users_service_1.usersServices.getSingleUsersForDb(userId);
@@ -75,6 +84,16 @@ const activeSingleUser = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(v
         data: result,
     });
 }));
+const addDesignationSingleUsers = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { userId } = req.params;
+    const playood = req.body;
+    const result = yield users_service_1.usersServices.addDesignationSingleUsersForDb(userId, playood);
+    res.status(200).json({
+        success: true,
+        message: "success fully add designation",
+        data: result,
+    });
+}));
 exports.usersContllors = {
     createUsers,
     getAllUsers,
@@ -83,4 +102,6 @@ exports.usersContllors = {
     deleteSingleUser,
     blockSingleUser,
     activeSingleUser,
+    addDesignationSingleUsers,
+    logingUsers,
 };
