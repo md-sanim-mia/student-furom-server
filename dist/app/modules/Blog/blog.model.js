@@ -9,5 +9,7 @@ const blogSchema = new mongoose_1.Schema({
     image_url: { type: String, default: "https://i.ibb.co.com/CQxZVXP/profile-user.png" },
     content: { type: String, required: true },
     blog_image: { type: String, required: true }
+}, {
+    timestamps: true
 });
 exports.blogModel = (0, mongoose_1.model)("Blog", blogSchema);

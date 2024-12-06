@@ -8,6 +8,9 @@ const blogSchema=new Schema<Tblog>({
     image_url:{type:String,default:"https://i.ibb.co.com/CQxZVXP/profile-user.png"},
     content:{type:String,required:true},
     blog_image:{type:String,required:true}
-})
+},{
+    timestamps:true
+}
+)
 
 export const blogModel=model<Tblog>("Blog",blogSchema)
