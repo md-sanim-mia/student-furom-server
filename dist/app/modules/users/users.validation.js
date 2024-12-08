@@ -20,6 +20,9 @@ const usersValidationSchema = zod_1.z.object({
         role: zod_1.z.string().default("user").optional(),
         year: zod_1.z.string().nonempty("Year is required"),
         status: zod_1.z.enum(["in-progress", "block"]).default("in-progress").optional(),
+        facebook: zod_1.z.string().optional().default(""),
+        linkedIn: zod_1.z.string().optional().default(""),
+        gender: zod_1.z.enum(["Male", "Female", "Other"]),
     }),
 });
 const usersUpdateValidationSchema = zod_1.z.object({
@@ -33,6 +36,10 @@ const usersUpdateValidationSchema = zod_1.z.object({
         address: zod_1.z.string().optional(),
         session: zod_1.z.string().optional(),
         year: zod_1.z.string().optional(),
+        status: zod_1.z.enum(["in-progress", "block"]).default("in-progress").optional(),
+        facebook: zod_1.z.string().optional().default("").optional(),
+        linkedIn: zod_1.z.string().optional().default("").optional(),
+        gender: zod_1.z.enum(["Male", "Female", "Other"]).optional(),
     }),
 });
 const LogingValidationSchema = zod_1.z.object({
