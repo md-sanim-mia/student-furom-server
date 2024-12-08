@@ -34,6 +34,9 @@ const usersSchema = new mongoose_1.Schema({
         default: "in-progress",
         required: false,
     },
+    facebook: { type: String, default: "", required: false },
+    linkedIn: { type: String, default: "", required: false },
+    gender: { type: String, enum: ["Male", "Female", "Other"], required: true },
 }, { timestamps: true });
 usersSchema.pre("save", function (next) {
     return __awaiter(this, void 0, void 0, function* () {
