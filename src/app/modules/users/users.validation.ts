@@ -18,6 +18,9 @@ const usersValidationSchema = z.object({
     role: z.string().default("user").optional(),
     year: z.string().nonempty("Year is required"),
     status: z.enum(["in-progress", "block"]).default("in-progress").optional(),
+    facebook: z.string().optional().default(""),
+    linkedIn: z.string().optional().default(""),
+    gender: z.enum(["Male", "Female", "Other"]),
   }),
 });
 const usersUpdateValidationSchema = z.object({
@@ -31,6 +34,10 @@ const usersUpdateValidationSchema = z.object({
     address: z.string().optional(),
     session: z.string().optional(),
     year: z.string().optional(),
+    status: z.enum(["in-progress", "block"]).default("in-progress").optional(),
+    facebook: z.string().optional().default("").optional(),
+    linkedIn: z.string().optional().default("").optional(),
+    gender: z.enum(["Male", "Female", "Other"]).optional(),
   }),
 });
 

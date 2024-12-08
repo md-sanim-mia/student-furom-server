@@ -14,6 +14,9 @@ type TUser = {
   status?: "in-progress" | "block";
   role?: "user";
   designation?: string;
+  facebook?: string;
+  linkedIn?: string;
+  gender: "Male" | "Female" | "Other";
 };
 type TUpdateUser = {
   name?: string;
@@ -28,4 +31,7 @@ type TUpdateUser = {
   status?: "in-progress" | "block";
   role?: "user";
   designation?: string;
+  facebook?: string;
+  linkedIn?: string;
+  gender?: "Male" | "Female" | "Other";
 };
