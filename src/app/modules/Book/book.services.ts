@@ -6,10 +6,18 @@ const createBookIntoDB=async (playload:TBook)=>{
      const result=await BookModel.create(playload)
      return result
 }
-const getAllBookFromDB=async ()=>{
-    const result=await BookModel.find()
+
+const getAllBookFromDB=async (search:string)=>{
+    const query= search? {
+        $or: [
+            { book_name: { $regex: search, $options: "i" } }, 
+        ],
+    }
+  : {};
+    const result=await BookModel.find(query)
     return result
 }
+
 const deleteBookFromDB=async (id:string)=>{
     const query={_id:new ObjectId(id)}
     const result=await BookModel.deleteOne(query)
@@ -24,7 +32,9 @@ const updateBookFromDB = async (id: string,updateDoc:Partial<TBook>) => {
     return result
 }
 
+
 export const bookServices={
     createBookIntoDB,getAllBookFromDB,
-    deleteBookFromDB,updateBookFromDB
+    deleteBookFromDB,updateBookFromDB,
+   
 }

@@ -8,7 +8,7 @@ const blogSchema = new mongoose_1.Schema({
     title: { type: String, required: true },
     image_url: { type: String, default: "https://i.ibb.co.com/CQxZVXP/profile-user.png" },
     content: { type: String, required: true },
-    blog_image: { type: String, required: true }
+    blog_image: { type: String, required: true },
 }, {
     timestamps: true
 });

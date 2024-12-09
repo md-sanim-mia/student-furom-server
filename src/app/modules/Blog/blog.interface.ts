@@ -6,5 +6,6 @@ export type Tblog={
     image_url?:string,
     blog_image:string,
     content:string,
-    title:string  
+    title:string,
+   
 }

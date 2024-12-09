@@ -25,8 +25,14 @@ const getSingleBlogFromDB=async (id:string)=>{
      const result=await blogModel.find(query)
      return result
 }
-const getAllBlogFromDB=async ()=>{
-     const result=await blogModel.find()
+const getAllBlogFromDB=async (search:string)=>{
+    const query= search? {
+        $or: [
+            { title: { $regex: search, $options: "i" } }, 
+        ],
+    }
+  : {};
+     const result=await blogModel.find(query)
      return result
 }
 export const blogServices = {
