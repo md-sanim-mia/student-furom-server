@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.usersRouters = void 0;
+const express_1 = __importDefault(require("express"));
+const users_controllar_1 = require("./users.controllar");
+const validationRequest_1 = require("../../middlwares/validationRequest");
+const users_validation_1 = require("./users.validation");
+const router = express_1.default.Router();
+router.post("/create-user", (0, validationRequest_1.validationRequest)(users_validation_1.usersValidation.usersValidationSchema), users_controllar_1.usersContllors.createUsers);
+router.get("/get-users", users_controllar_1.usersContllors.getAllUsers);
+router.get("/:userId", users_controllar_1.usersContllors.getSingleUser);
+router.patch("/:userId", (0, validationRequest_1.validationRequest)(users_validation_1.usersValidation.usersUpdateValidationSchema), users_controllar_1.usersContllors.updateSingleUser);
+router.delete("/:userId", users_controllar_1.usersContllors.deleteSingleUser);
+router.patch("/black-user/:userId", users_controllar_1.usersContllors.blockSingleUser);
+router.patch("/active-user/:userId", users_controllar_1.usersContllors.activeSingleUser);
+router.patch("/add-designation/:userId", (0, validationRequest_1.validationRequest)(users_validation_1.usersValidation.LogingValidationSchema), users_controllar_1.usersContllors.addDesignationSingleUsers);
+router.post("/loging-user", users_controllar_1.usersContllors.logingUsers);
+exports.usersRouters = router;

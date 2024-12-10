@@ -3,7 +3,7 @@ import { blogRoutes } from "../modules/Blog/blog.router";
 import { bookRouters } from "../modules/Book/book.routes";
 import { scheduleRouters } from "../modules/Schedule/schedule.routes";
 import { compleneRouters } from "../modules/Complene/complene.routes";
-
+import { usersRouters } from "../modules/users/users.router";
 const router = express.Router();
 const modulesRouter = [
     {
@@ -11,17 +11,25 @@ const modulesRouter = [
         route: blogRoutes
     },
     {
-        path:'/book',
-        route:bookRouters
+        path: '/book',
+        route: bookRouters
     },
     {
-        path:'/schedule',
-        route:scheduleRouters
+        path: '/schedule',
+        route: scheduleRouters
     },
     {
-        path:'/complene',
-        route:compleneRouters
-    }
-];
+        path: '/complene',
+        route: compleneRouters
+    },
+    {
+        path: "/users",
+        route: usersRouters,
+    },
+]
+
+
+
+
 modulesRouter.forEach((route) => router.use(route.path, route.route));
 export default router;
