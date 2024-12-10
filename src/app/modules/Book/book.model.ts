@@ -6,7 +6,7 @@ const bookSchema= new Schema<TBook>({
     book_name:{type:String,required:true},
     book_title:{type:String,required:true},
     writer_name:{type:String,required:true},
-    drive_link:{type:String,required:true}
+    drive_link:{type:String,required:false}
 })
 
 export const BookModel= model<TBook>('Book',bookSchema)

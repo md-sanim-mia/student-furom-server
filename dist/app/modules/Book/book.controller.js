@@ -33,35 +33,25 @@ const getAllBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0,
         data: result
     });
 }));
-const deleteBook = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const id = req.params.id;
-        const result = yield book_services_1.bookServices.deleteBookFromDB(id);
-        res.status(200).json({
-            success: true,
-            message: "Delete Book successfully",
-            data: result
-        });
-    }
-    catch (err) {
-        next(err);
-    }
-});
-const updateBook = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const id = req.params.id;
-        const { updateDoc } = req.body;
-        const result = yield book_services_1.bookServices.updateBookFromDB(id, updateDoc);
-        res.status(200).json({
-            success: true,
-            message: "Book updated successfully",
-            data: result
-        });
-    }
-    catch (err) {
-        next(err);
-    }
-});
+const deleteBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const result = yield book_services_1.bookServices.deleteBookFromDB(id);
+    res.status(200).json({
+        success: true,
+        message: "Delete Book successfully",
+        data: result
+    });
+}));
+const updateBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const { updateDoc } = req.body;
+    const result = yield book_services_1.bookServices.updateBookFromDB(id, updateDoc);
+    res.status(200).json({
+        success: true,
+        message: "Book updated successfully",
+        data: result
+    });
+}));
 exports.bookContrller = {
     createBook, getAllBook, deleteBook, updateBook,
 };

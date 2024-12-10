@@ -33,8 +33,14 @@ const getSingleBlogFromDB = (id) => __awaiter(void 0, void 0, void 0, function* 
     const result = yield blog_model_1.blogModel.find(query);
     return result;
 });
-const getAllBlogFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield blog_model_1.blogModel.find();
+const getAllBlogFromDB = (search) => __awaiter(void 0, void 0, void 0, function* () {
+    const query = search ? {
+        $or: [
+            { title: { $regex: search, $options: "i" } },
+        ],
+    }
+        : {};
+    const result = yield blog_model_1.blogModel.find(query);
     return result;
 });
 exports.blogServices = {
