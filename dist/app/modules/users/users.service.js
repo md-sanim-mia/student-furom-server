@@ -13,14 +13,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.usersServices = void 0;
+const queryBuilder_1 = __importDefault(require("../../builder/queryBuilder"));
+const users_const_1 = require("./users.const");
 const users_model_1 = require("./users.model");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const createUserForDb = (playood) => __awaiter(void 0, void 0, void 0, function* () {
+    const isExist = yield users_model_1.Users.findOne({ email: playood.email });
+    if (isExist) {
+        throw new Error("user alredy exist ");
+    }
     const result = yield users_model_1.Users.create(playood);
     return result;
 });
-const getAllUsersForDb = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield users_model_1.Users.find({}).select("-password");
+const getAllUsersForDb = (query) => __awaiter(void 0, void 0, void 0, function* () {
+    const userQuery = new queryBuilder_1.default(users_model_1.Users.find().select("-password"), query)
+        .search(users_const_1.userSearchbleFields)
+        .filter()
+        .sort()
+        .paginate();
+    const result = yield (userQuery === null || userQuery === void 0 ? void 0 : userQuery.modelQuery);
     return result;
 });
 const getSingleUsersForDb = (userId) => __awaiter(void 0, void 0, void 0, function* () {
@@ -34,7 +45,7 @@ const updateSingleUsersForDb = (userId, playood) => __awaiter(void 0, void 0, vo
     return result;
 });
 const deleteSingleUsersForDb = (userId) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield users_model_1.Users.deleteOne({ _id: userId });
+    const result = yield users_model_1.Users.findByIdAndDelete(userId);
     return result;
 });
 const blockSingleUsersForDb = (userId) => __awaiter(void 0, void 0, void 0, function* () {
@@ -52,7 +63,12 @@ const activekSingleUsersForDb = (userId) => __awaiter(void 0, void 0, void 0, fu
 const addDesignationSingleUsersForDb = (userId, playood) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield users_model_1.Users.updateOne({ _id: userId }, {
         $set: { designation: playood },
+    }, {
+        new: true,
     });
+    if (result) {
+        yield users_model_1.Users.findByIdAndUpdate(userId, { $set: { role: "member" } });
+    }
     return result;
 });
 const logingUsersForDb = (playood) => __awaiter(void 0, void 0, void 0, function* () {

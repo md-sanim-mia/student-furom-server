@@ -7,6 +7,6 @@ const bookSchema = new mongoose_1.Schema({
     book_name: { type: String, required: true },
     book_title: { type: String, required: true },
     writer_name: { type: String, required: true },
-    drive_link: { type: String, required: true }
+    drive_link: { type: String, required: false }
 });
 exports.BookModel = (0, mongoose_1.model)('Book', bookSchema);

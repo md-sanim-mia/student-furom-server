@@ -28,3 +28,5 @@ export const BloodGroup: TBloodGroup[] = [
 ];
 
 export const Year = ["1st", "2nd", "3rd", "4th"];
+
+export const userSearchbleFields = ["email", "name", "role"];

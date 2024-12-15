@@ -22,9 +22,17 @@ router.patch("/black-user/:userId", usersContllors.blockSingleUser);
 router.patch("/active-user/:userId", usersContllors.activeSingleUser);
 router.patch(
   "/add-designation/:userId",
-  validationRequest(usersValidation.LogingValidationSchema),
   usersContllors.addDesignationSingleUsers
 );
-router.post("/loging-user", usersContllors.logingUsers);
+router.post(
+  "/loging-user",
+  validationRequest(usersValidation.LogingValidationSchema),
+  usersContllors.logingUsers
+);
+router.patch(
+  "/set-role/:userId",
+
+  usersContllors.updateRoleSingleUser
+);
 
 export const usersRouters = router;
