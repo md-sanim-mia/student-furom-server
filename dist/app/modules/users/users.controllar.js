@@ -22,7 +22,7 @@ const createUsers = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0
     });
 }));
 const getAllUsers = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield users_service_1.usersServices.getAllUsersForDb();
+    const result = yield users_service_1.usersServices.getAllUsersForDb(req === null || req === void 0 ? void 0 : req.query);
     res.status(200).json({
         success: true,
         message: "get all users for db",
@@ -87,10 +87,21 @@ const activeSingleUser = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(v
 const addDesignationSingleUsers = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId } = req.params;
     const playood = req.body;
-    const result = yield users_service_1.usersServices.addDesignationSingleUsersForDb(userId, playood);
+    const result = yield users_service_1.usersServices.addDesignationSingleUsersForDb(userId, playood === null || playood === void 0 ? void 0 : playood.designation);
     res.status(200).json({
         success: true,
         message: "success fully add designation",
+        data: result,
+    });
+}));
+const updateRoleSingleUser = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    const { userId } = req.params;
+    const playood = (_a = req === null || req === void 0 ? void 0 : req.body) === null || _a === void 0 ? void 0 : _a.roles;
+    const result = yield users_service_1.usersServices.updateUserRoleForDb(userId, playood);
+    res.status(200).json({
+        success: true,
+        message: "success fully set the role",
         data: result,
     });
 }));
@@ -104,4 +115,5 @@ exports.usersContllors = {
     activeSingleUser,
     addDesignationSingleUsers,
     logingUsers,
+    updateRoleSingleUser,
 };

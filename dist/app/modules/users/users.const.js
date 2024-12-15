@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Year = exports.BloodGroup = exports.Department = void 0;
+exports.userSearchbleFields = exports.Year = exports.BloodGroup = exports.Department = void 0;
 exports.Department = [
     "Computer Science",
     "Engineering",
@@ -29,3 +29,4 @@ exports.BloodGroup = [
     "O-",
 ];
 exports.Year = ["1st", "2nd", "3rd", "4th"];
+exports.userSearchbleFields = ["email", "name", "role"];
