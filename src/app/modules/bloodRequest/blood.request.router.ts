@@ -21,3 +21,13 @@ router.delete(
   "/:bloodRequestId",
   bloodRequestControllar.deletedSingleBloodRequest
 );
+router.patch(
+  "/approved-request/:bloodRequestId",
+  bloodRequestControllar.approvedSingleBloodRequest
+);
+router.patch(
+  "/rejected-request/:bloodRequestId",
+  bloodRequestControllar.rejectedSingleBloodRequest
+);
+
+export const bloodRequestRouter = router;

@@ -12,7 +12,7 @@ const createBloodRequest = asyncCatch(async (req, res) => {
 });
 
 const getAllBloodRequest = asyncCatch(async (req, res) => {
-  const result = await bloodRequestService.getAllBloodRequestForDb();
+  const result = await bloodRequestService.getAllBloodRequestForDb(req.query);
   res.status(200).json({
     success: true,
     message: "get all blood request for db",
@@ -52,6 +52,28 @@ const deletedSingleBloodRequest = asyncCatch(async (req, res) => {
     data: result,
   });
 });
+const approvedSingleBloodRequest = asyncCatch(async (req, res) => {
+  const { bloodRequestId } = req.params;
+  const result = await bloodRequestService.ApproveStatusSingleBloodRequestForDb(
+    bloodRequestId
+  );
+  res.status(200).json({
+    success: true,
+    message: "blood request satus approved for db ",
+    data: result,
+  });
+});
+const rejectedSingleBloodRequest = asyncCatch(async (req, res) => {
+  const { bloodRequestId } = req.params;
+  const result = await bloodRequestService.rejectStatusSingleBloodRequestForDb(
+    bloodRequestId
+  );
+  res.status(200).json({
+    success: true,
+    message: " blood request satus rejected for db ",
+    data: result,
+  });
+});
 
 export const bloodRequestControllar = {
   createBloodRequest,
@@ -59,4 +81,6 @@ export const bloodRequestControllar = {
   getSingleBloodRequest,
   deletedSingleBloodRequest,
   pendingBloodRequest,
+  approvedSingleBloodRequest,
+  rejectedSingleBloodRequest,
 };
