@@ -34,6 +34,7 @@ const usersSchema = new mongoose_1.Schema({
         default: "in-progress",
         required: false,
     },
+    designation: { type: String, default: "normal user", required: false },
     facebook: { type: String, default: "", required: false },
     linkedIn: { type: String, default: "", required: false },
     gender: { type: String, enum: ["Male", "Female", "Other"], required: true },

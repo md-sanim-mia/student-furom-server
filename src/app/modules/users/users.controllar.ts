@@ -12,7 +12,7 @@ const createUsers = asyncCatch(async (req, res) => {
 });
 
 const getAllUsers = asyncCatch(async (req, res) => {
-  const result = await usersServices.getAllUsersForDb();
+  const result = await usersServices.getAllUsersForDb(req?.query);
   res.status(200).json({
     success: true,
     message: "get all users for db",
@@ -86,11 +86,21 @@ const addDesignationSingleUsers = asyncCatch(async (req, res) => {
   const playood = req.body;
   const result = await usersServices.addDesignationSingleUsersForDb(
     userId,
-    playood
+    playood?.designation
   );
   res.status(200).json({
     success: true,
     message: "success fully add designation",
+    data: result,
+  });
+});
+const updateRoleSingleUser = asyncCatch(async (req, res) => {
+  const { userId } = req.params;
+  const playood = req?.body?.roles;
+  const result = await usersServices.updateUserRoleForDb(userId, playood);
+  res.status(200).json({
+    success: true,
+    message: "success fully set the role",
     data: result,
   });
 });
@@ -105,4 +115,5 @@ export const usersContllors = {
   activeSingleUser,
   addDesignationSingleUsers,
   logingUsers,
+  updateRoleSingleUser,
 };

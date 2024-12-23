@@ -1,12 +1,25 @@
+import queryBuilders from "../../builder/queryBuilder";
+import { userSearchbleFields } from "./users.const";
 import { Users } from "./users.model";
 import bcrypt from "bcrypt";
 const createUserForDb = async (playood: TUser) => {
+  const isExist = await Users.findOne({ email: playood.email });
+  if (isExist) {
+    throw new Error("user alredy exist ");
+  }
   const result = await Users.create(playood);
   return result;
 };
 
-const getAllUsersForDb = async () => {
-  const result = await Users.find({}).select("-password");
+const getAllUsersForDb = async (query: Record<string, unknown>) => {
+  const userQuery = new queryBuilders(Users.find().select("-password"), query)
+    .search(userSearchbleFields)
+    .filter()
+    .sort()
+    .paginate();
+
+  const result = await userQuery?.modelQuery;
+
   return result;
 };
 
@@ -23,7 +36,7 @@ const updateSingleUsersForDb = async (userId: string, playood: TUpdateUser) => {
 };
 
 const deleteSingleUsersForDb = async (userId: string) => {
-  const result = await Users.deleteOne({ _id: userId });
+  const result = await Users.findByIdAndDelete(userId);
   return result;
 };
 
@@ -55,8 +68,14 @@ const addDesignationSingleUsersForDb = async (
     { _id: userId },
     {
       $set: { designation: playood },
+    },
+    {
+      new: true,
     }
   );
+  if (result) {
+    await Users.findByIdAndUpdate(userId, { $set: { role: "member" } });
+  }
   return result;
 };
 const logingUsersForDb = async (playood: Partial<TUser>) => {

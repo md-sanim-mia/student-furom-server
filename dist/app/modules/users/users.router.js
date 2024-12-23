@@ -16,6 +16,7 @@ router.patch("/:userId", (0, validationRequest_1.validationRequest)(users_valida
 router.delete("/:userId", users_controllar_1.usersContllors.deleteSingleUser);
 router.patch("/black-user/:userId", users_controllar_1.usersContllors.blockSingleUser);
 router.patch("/active-user/:userId", users_controllar_1.usersContllors.activeSingleUser);
-router.patch("/add-designation/:userId", (0, validationRequest_1.validationRequest)(users_validation_1.usersValidation.LogingValidationSchema), users_controllar_1.usersContllors.addDesignationSingleUsers);
-router.post("/loging-user", users_controllar_1.usersContllors.logingUsers);
+router.patch("/add-designation/:userId", users_controllar_1.usersContllors.addDesignationSingleUsers);
+router.post("/loging-user", (0, validationRequest_1.validationRequest)(users_validation_1.usersValidation.LogingValidationSchema), users_controllar_1.usersContllors.logingUsers);
+router.patch("/set-role/:userId", users_controllar_1.usersContllors.updateRoleSingleUser);
 exports.usersRouters = router;
