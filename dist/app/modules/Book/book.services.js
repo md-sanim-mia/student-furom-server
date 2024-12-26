@@ -26,6 +26,11 @@ const getAllBookFromDB = (search) => __awaiter(void 0, void 0, void 0, function*
     const result = yield book_model_1.BookModel.find(query);
     return result;
 });
+const getSingleBookFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const query = { _id: new mongodb_1.ObjectId(id) };
+    const result = yield book_model_1.BookModel.find(query);
+    return result;
+});
 const deleteBookFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const query = { _id: new mongodb_1.ObjectId(id) };
     const result = yield book_model_1.BookModel.deleteOne(query);
@@ -41,4 +46,5 @@ const updateBookFromDB = (id, updateDoc) => __awaiter(void 0, void 0, void 0, fu
 exports.bookServices = {
     createBookIntoDB, getAllBookFromDB,
     deleteBookFromDB, updateBookFromDB,
+    getSingleBookFromDB
 };

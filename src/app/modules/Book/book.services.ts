@@ -18,6 +18,11 @@ const getAllBookFromDB=async (search:string)=>{
     return result
 }
 
+const getSingleBookFromDB=async (id:string)=>{
+    const query={_id:new ObjectId(id)}
+    const result=await BookModel.find(query)
+    return result
+}
 const deleteBookFromDB=async (id:string)=>{
     const query={_id:new ObjectId(id)}
     const result=await BookModel.deleteOne(query)
@@ -36,5 +41,5 @@ const updateBookFromDB = async (id: string,updateDoc:Partial<TBook>) => {
 export const bookServices={
     createBookIntoDB,getAllBookFromDB,
     deleteBookFromDB,updateBookFromDB,
-   
+    getSingleBookFromDB
 }

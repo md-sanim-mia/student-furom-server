@@ -9,6 +9,22 @@ const updateAdvertisingIntoDB=async (id:string, updateDoc:Partial<TAdvertising>)
     return result
 }
 
+const createAdvertisingIntoDB=async (playload:TAdvertising)=>{
+    const result =await AdvertisingModel.create(playload)
+    return result
+}
+
+const getAllAdvertisingFromDB=async ()=>{
+     const result=await AdvertisingModel.find()
+     return result
+}
+
+const deleteAdvertisingFromDB=async (id:string)=>{
+    const query={_id:new ObjectId(id)}
+   const result=await AdvertisingModel.deleteOne(query)
+   return result
+}
 export const advertisingServices={
-    updateAdvertisingIntoDB
+    updateAdvertisingIntoDB, createAdvertisingIntoDB,
+    getAllAdvertisingFromDB, deleteAdvertisingFromDB
 }
