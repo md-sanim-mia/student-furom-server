@@ -4,7 +4,9 @@ import { bookRouters } from "../modules/Book/book.routes";
 import { scheduleRouters } from "../modules/Schedule/schedule.routes";
 import { compleneRouters } from "../modules/Complene/complene.routes";
 import { usersRouters } from "../modules/users/users.router";
+import { AdvertisngRoutes } from "../modules/Advertising/Advertising.toutr";
 const router = express.Router();
+console.log('testing')
 const modulesRouter = [
     {
         path: '/blog',
@@ -26,6 +28,10 @@ const modulesRouter = [
         path: "/users",
         route: usersRouters,
     },
+    {
+        path:'/add',
+        route:AdvertisngRoutes
+    }
 ]
 
 
