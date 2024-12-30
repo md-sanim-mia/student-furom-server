@@ -18,6 +18,11 @@ const getAllAdvertisingFromDB=async ()=>{
      const result=await AdvertisingModel.find()
      return result
 }
+const getSingleAdvertisingFromDB=async (id:string)=>{
+    const query={_id:new ObjectId(id)}
+     const result=await AdvertisingModel.find(query)
+     return result
+}
 
 const deleteAdvertisingFromDB=async (id:string)=>{
     const query={_id:new ObjectId(id)}
@@ -26,5 +31,6 @@ const deleteAdvertisingFromDB=async (id:string)=>{
 }
 export const advertisingServices={
     updateAdvertisingIntoDB, createAdvertisingIntoDB,
-    getAllAdvertisingFromDB, deleteAdvertisingFromDB
+    getAllAdvertisingFromDB, deleteAdvertisingFromDB,
+    getSingleAdvertisingFromDB
 }

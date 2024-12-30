@@ -6,7 +6,6 @@ export  type TAdvertising={
     address:string,
     contact_number:string,
     rating:number,
-    company_logo_image:string,
     image:string,
-    status:boolean,
+   
 }

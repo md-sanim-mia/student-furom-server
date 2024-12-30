@@ -27,6 +27,11 @@ const getAllAdvertisingFromDB = () => __awaiter(void 0, void 0, void 0, function
     const result = yield Advertising_model_1.AdvertisingModel.find();
     return result;
 });
+const getSingleAdvertisingFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const query = { _id: new mongodb_1.ObjectId(id) };
+    const result = yield Advertising_model_1.AdvertisingModel.find(query);
+    return result;
+});
 const deleteAdvertisingFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const query = { _id: new mongodb_1.ObjectId(id) };
     const result = yield Advertising_model_1.AdvertisingModel.deleteOne(query);
@@ -34,5 +39,6 @@ const deleteAdvertisingFromDB = (id) => __awaiter(void 0, void 0, void 0, functi
 });
 exports.advertisingServices = {
     updateAdvertisingIntoDB, createAdvertisingIntoDB,
-    getAllAdvertisingFromDB, deleteAdvertisingFromDB
+    getAllAdvertisingFromDB, deleteAdvertisingFromDB,
+    getSingleAdvertisingFromDB
 };
