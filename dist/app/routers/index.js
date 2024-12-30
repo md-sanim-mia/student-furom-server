@@ -4,7 +4,39 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const blog_router_1 = require("../modules/Blog/blog.router");
+const book_routes_1 = require("../modules/Book/book.routes");
+const schedule_routes_1 = require("../modules/Schedule/schedule.routes");
+const complene_routes_1 = require("../modules/Complene/complene.routes");
+const users_router_1 = require("../modules/users/users.router");
+const Advertising_toutr_1 = require("../modules/Advertising/Advertising.toutr");
 const router = express_1.default.Router();
-const modulesRouter = [{}];
-// modulesRouter.forEach((route) => router.use(route.path, route.route));
+console.log('testing');
+const modulesRouter = [
+    {
+        path: '/blog',
+        route: blog_router_1.blogRoutes
+    },
+    {
+        path: '/book',
+        route: book_routes_1.bookRouters
+    },
+    {
+        path: '/schedule',
+        route: schedule_routes_1.scheduleRouters
+    },
+    {
+        path: '/complene',
+        route: complene_routes_1.compleneRouters
+    },
+    {
+        path: "/users",
+        route: users_router_1.usersRouters,
+    },
+    {
+        path: '/add',
+        route: Advertising_toutr_1.AdvertisngRoutes
+    }
+];
+modulesRouter.forEach((route) => router.use(route.path, route.route));
 exports.default = router;
