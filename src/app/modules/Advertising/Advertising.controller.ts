@@ -2,8 +2,9 @@ import { asyncCatch } from "../../utility/async.catch";
 import { advertisingServices } from "./Advertising.services";
 
 const createAdvertising = asyncCatch(async (req, res) => {
-  
+   
     const  advertising  = req.body;
+    console.log("it is ad ",advertising)
     const result = await advertisingServices.createAdvertisingIntoDB(advertising)
     res.status(200).json({
         success: true,
@@ -35,6 +36,16 @@ const getAdvertising=asyncCatch(async (req,res)=>{
     })
 
 }) 
+const getSingleAdvertising=asyncCatch(async (req,res)=>{
+    const id=req.params.id
+    const result=await advertisingServices.getSingleAdvertisingFromDB(id)
+    res.status(200).json({
+        success: true,
+        message: "Single advertising getted successfully",
+        data: result
+    })
+
+}) 
 
 const deleteAdvertising = asyncCatch(async (req, res) => {
  
@@ -49,5 +60,6 @@ const deleteAdvertising = asyncCatch(async (req, res) => {
 })
 export  const AdvertisingController={
     createAdvertising, updateAdvertising,
-    getAdvertising, deleteAdvertising
+    getAdvertising, deleteAdvertising,
+    getSingleAdvertising
 }

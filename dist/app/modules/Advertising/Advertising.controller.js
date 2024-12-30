@@ -14,6 +14,7 @@ const async_catch_1 = require("../../utility/async.catch");
 const Advertising_services_1 = require("./Advertising.services");
 const createAdvertising = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const advertising = req.body;
+    console.log("it is ad ", advertising);
     const result = yield Advertising_services_1.advertisingServices.createAdvertisingIntoDB(advertising);
     res.status(200).json({
         success: true,
@@ -39,6 +40,15 @@ const getAdvertising = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
         data: result
     });
 }));
+const getSingleAdvertising = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const result = yield Advertising_services_1.advertisingServices.getSingleAdvertisingFromDB(id);
+    res.status(200).json({
+        success: true,
+        message: "Single advertising getted successfully",
+        data: result
+    });
+}));
 const deleteAdvertising = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const result = yield Advertising_services_1.advertisingServices.deleteAdvertisingFromDB(id);
@@ -50,5 +60,6 @@ const deleteAdvertising = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(
 }));
 exports.AdvertisingController = {
     createAdvertising, updateAdvertising,
-    getAdvertising, deleteAdvertising
+    getAdvertising, deleteAdvertising,
+    getSingleAdvertising
 };

@@ -51,9 +51,9 @@ const deleteBook=asyncCatch(async (req,res)=>{
 })
 
 const updateBook =asyncCatch(async (req,res)=>{
-    
+    console.log('update')
     const id=req.params.id
-    const {updateDoc}=req.body
+    const updateDoc=req.body
     const result=await bookServices.updateBookFromDB(id,updateDoc)
     res.status(200).json({
        success: true,

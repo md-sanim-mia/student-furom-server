@@ -52,8 +52,9 @@ const deleteBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0,
     });
 }));
 const updateBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('update');
     const id = req.params.id;
-    const { updateDoc } = req.body;
+    const updateDoc = req.body;
     const result = yield book_services_1.bookServices.updateBookFromDB(id, updateDoc);
     res.status(200).json({
         success: true,
