@@ -10,8 +10,8 @@ const schedule_routes_1 = require("../modules/Schedule/schedule.routes");
 const complene_routes_1 = require("../modules/Complene/complene.routes");
 const users_router_1 = require("../modules/users/users.router");
 const Advertising_toutr_1 = require("../modules/Advertising/Advertising.toutr");
+const previousCommitte_route_1 = require("../modules/PreviousCommitte/previousCommitte.route");
 const router = express_1.default.Router();
-console.log('testing');
 const modulesRouter = [
     {
         path: '/blog',
@@ -36,6 +36,10 @@ const modulesRouter = [
     {
         path: '/add',
         route: Advertising_toutr_1.AdvertisngRoutes
+    },
+    {
+        path: '/previousCommitte',
+        route: previousCommitte_route_1.PreviousRouters
     }
 ];
 modulesRouter.forEach((route) => router.use(route.path, route.route));

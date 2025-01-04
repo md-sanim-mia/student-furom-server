@@ -5,8 +5,10 @@ import { scheduleRouters } from "../modules/Schedule/schedule.routes";
 import { compleneRouters } from "../modules/Complene/complene.routes";
 import { usersRouters } from "../modules/users/users.router";
 import { AdvertisngRoutes } from "../modules/Advertising/Advertising.toutr";
+import { PreviousRouters } from "../modules/PreviousCommitte/previousCommitte.route";
+
 const router = express.Router();
-console.log('testing')
+
 const modulesRouter = [
     {
         path: '/blog',
@@ -31,6 +33,10 @@ const modulesRouter = [
     {
         path:'/add',
         route:AdvertisngRoutes
+    },
+    {
+        path:'/previousCommitte',
+        route:PreviousRouters
     }
 ]
 

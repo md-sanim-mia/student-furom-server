@@ -1,6 +1,10 @@
 import { TSchedule } from "./schedule.interface";
 import { scheduleModel } from "./schedule.model";
 import { ObjectId } from "mongodb";
+const getAllSceduleFormDB=async ()=>{
+    const result=await scheduleModel.find()
+    return result
+}
 const createScheduleIntoDB=async (playload:TSchedule)=>{
    const result=await scheduleModel.create(playload)
    return result
@@ -20,5 +24,6 @@ const updateScheduleFromDB = async (id: string,updateDoc:Partial<TSchedule>) => 
     return result
 }
 export const scheduleServices={
-    createScheduleIntoDB,deleteScheduleIntoDB,updateScheduleFromDB
+    createScheduleIntoDB,deleteScheduleIntoDB,
+    updateScheduleFromDB,getAllSceduleFormDB
 }

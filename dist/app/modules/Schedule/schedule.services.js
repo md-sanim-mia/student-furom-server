@@ -12,6 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.scheduleServices = void 0;
 const schedule_model_1 = require("./schedule.model");
 const mongodb_1 = require("mongodb");
+const getAllSceduleFormDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield schedule_model_1.scheduleModel.find();
+    return result;
+});
 const createScheduleIntoDB = (playload) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield schedule_model_1.scheduleModel.create(playload);
     return result;
@@ -29,5 +33,6 @@ const updateScheduleFromDB = (id, updateDoc) => __awaiter(void 0, void 0, void 0
     return result;
 });
 exports.scheduleServices = {
-    createScheduleIntoDB, deleteScheduleIntoDB, updateScheduleFromDB
+    createScheduleIntoDB, deleteScheduleIntoDB,
+    updateScheduleFromDB, getAllSceduleFormDB
 };
