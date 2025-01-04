@@ -1,6 +1,16 @@
 import { asyncCatch } from "../../utility/async.catch";
 import { scheduleServices } from "./schedule.services";
 
+
+const getAllSchedule=asyncCatch(async (req,res)=>{
+   
+      const result=await scheduleServices.getAllSceduleFormDB()
+      res.status(200).json({
+        success:true,
+        message:"All schedule geted succesfully",
+        data:result
+    })
+})
 const createShedule=asyncCatch(async (req,res)=>{
     const scheduledata=req.body
     const result=await scheduleServices.createScheduleIntoDB(scheduledata)
@@ -34,5 +44,6 @@ const updateSchedule =asyncCatch(async (req,res)=>{
  
 })
 export const scheduleController={
-    createShedule,deleteSchedule,updateSchedule
+    createShedule,deleteSchedule,
+    updateSchedule,getAllSchedule
 }
