@@ -3,6 +3,7 @@ import { scheduleController } from "./schedule.controller"
 
 const router=express.Router()
 
+router.get('/getSchedule',scheduleController.getAllSchedule)
 router.post('/create',scheduleController.createShedule)
 router.delete('/delete/:id',scheduleController.deleteSchedule)
 router.put('/update/:id',scheduleController.updateSchedule)
