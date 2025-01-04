@@ -21,6 +21,14 @@ const createPrevious = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
         data: result
     });
 }));
+const getAllPrevious = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield previousCommitte_services_1.previousServices.getAllPreviousFromDB();
+    res.status(200).json({
+        success: true,
+        message: "Previous Committe Geted Successfully",
+        data: result
+    });
+}));
 const deletePrevious = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const result = yield previousCommitte_services_1.previousServices.deletePriviousFromDB(id);
@@ -31,5 +39,6 @@ const deletePrevious = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
     });
 }));
 exports.preivousController = {
-    createPrevious, deletePrevious
+    createPrevious, deletePrevious,
+    getAllPrevious
 };

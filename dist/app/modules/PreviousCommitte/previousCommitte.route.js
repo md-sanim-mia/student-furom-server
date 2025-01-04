@@ -9,4 +9,5 @@ const previousCommitte_controller_1 = require("./previousCommitte.controller");
 const router = express_1.default.Router();
 router.post('/create', previousCommitte_controller_1.preivousController.createPrevious);
 router.delete('/deleteIt/:id', previousCommitte_controller_1.preivousController.deletePrevious);
+router.get('/getPrevious', previousCommitte_controller_1.preivousController.getAllPrevious);
 exports.PreviousRouters = router;
