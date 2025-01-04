@@ -16,11 +16,16 @@ const createPreviousIntoDB = (playload) => __awaiter(void 0, void 0, void 0, fun
     const result = yield previousCommitte_model_1.PreviousModel.create(playload);
     return result;
 });
+const getAllPreviousFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield previousCommitte_model_1.PreviousModel.find();
+    return result;
+});
 const deletePriviousFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const query = { _id: new mongodb_1.ObjectId(id) };
     const result = yield previousCommitte_model_1.PreviousModel.deleteOne(query);
     return result;
 });
 exports.previousServices = {
-    createPreviousIntoDB, deletePriviousFromDB
+    createPreviousIntoDB, deletePriviousFromDB,
+    getAllPreviousFromDB
 };

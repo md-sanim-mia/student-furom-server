@@ -11,6 +11,14 @@ const createPrevious=asyncCatch(async (req,res)=>{
     })
 })
 
+const getAllPrevious=asyncCatch(async (req,res)=>{
+    const result=await previousServices.getAllPreviousFromDB()
+    res.status(200).json({
+        success:true,
+        message:"Previous Committe Geted Successfully",
+        data:result
+    })
+})
 const deletePrevious=asyncCatch(async (req, res)=>{
     const id=req.params.id
     const result=await previousServices.deletePriviousFromDB(id)
@@ -21,5 +29,6 @@ const deletePrevious=asyncCatch(async (req, res)=>{
     })
 })
 export const preivousController={
-    createPrevious,deletePrevious
+    createPrevious,deletePrevious,
+    getAllPrevious
 }
