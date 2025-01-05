@@ -1,3 +1,4 @@
+import { JwtPayload } from "jsonwebtoken";
 import { asyncCatch } from "../../utility/async.catch";
 import { usersServices } from "./users.service";
 
@@ -25,14 +26,14 @@ const logingUsers = asyncCatch(async (req, res) => {
   const result = await usersServices.logingUsersForDb(playood);
   res.status(200).json({
     success: true,
-    message: "get all users for db",
+    message: "success fully loging",
     data: result,
   });
 });
 
 const getSingleUser = asyncCatch(async (req, res) => {
-  const { userId } = req.params;
-  const result = await usersServices.getSingleUsersForDb(userId);
+  const email = req?.query?.email as string;
+  const result = await usersServices.getSingleUsersForDb(email);
   res.status(200).json({
     success: true,
     message: "get single user for db",
@@ -105,6 +106,39 @@ const updateRoleSingleUser = asyncCatch(async (req, res) => {
   });
 });
 
+const chengePassword = asyncCatch(async (req, res) => {
+  const result = await usersServices.chengePasswordForDb(
+    req?.user as JwtPayload,
+    req.body
+  );
+
+  res.status(200).json({
+    success: true,
+    message: "success fully chenge password",
+  });
+});
+
+const forgotPassword = asyncCatch(async (req, res) => {
+  const email = req?.body?.email;
+  const result = await usersServices.forgotPasswordForDb(email);
+  res.status(200).json({
+    success: true,
+    message: "reset link success fully generated",
+    data: result,
+  });
+});
+const resetPasswor = asyncCatch(async (req, res) => {
+  const token = req?.headers?.authorization?.split(" ")[1];
+  const playood = req?.body;
+  const result = await usersServices.resetPasswordForDb(
+    playood,
+    token as string
+  );
+  res.status(200).json({
+    success: true,
+    message: "success fully updated your password please login !",
+  });
+});
 export const usersContllors = {
   createUsers,
   getAllUsers,
@@ -116,4 +150,7 @@ export const usersContllors = {
   addDesignationSingleUsers,
   logingUsers,
   updateRoleSingleUser,
+  chengePassword,
+  forgotPassword,
+  resetPasswor,
 };
