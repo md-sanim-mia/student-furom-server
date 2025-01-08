@@ -3,5 +3,7 @@ export type TpreviousCommitte={
      name:string,
      designation:string,
      image:string
-     session:object
+     session:string
+     address:string
+     department:string
 } 

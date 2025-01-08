@@ -6,6 +6,7 @@ import { compleneRouters } from "../modules/Complene/complene.routes";
 import { usersRouters } from "../modules/users/users.router";
 import { AdvertisngRoutes } from "../modules/Advertising/Advertising.toutr";
 import { PreviousRouters } from "../modules/PreviousCommitte/previousCommitte.route";
+import { GallaryRouters } from "../modules/Gallary/gallary.routes";
 
 const router = express.Router();
 
@@ -37,6 +38,10 @@ const modulesRouter = [
     {
         path:'/previousCommitte',
         route:PreviousRouters
+    },
+    {
+        path:'/gallary',
+        route:GallaryRouters
     }
 ]
 
