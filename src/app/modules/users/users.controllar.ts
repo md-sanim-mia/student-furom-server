@@ -26,7 +26,7 @@ const logingUsers = asyncCatch(async (req, res) => {
   const result = await usersServices.logingUsersForDb(playood);
   res.status(200).json({
     success: true,
-    message: "success fully loging",
+    message: "success fully login",
     data: result,
   });
 });
@@ -111,10 +111,12 @@ const chengePassword = asyncCatch(async (req, res) => {
     req?.user as JwtPayload,
     req.body
   );
+  console.log;
 
   res.status(200).json({
     success: true,
     message: "success fully chenge password",
+    data: result,
   });
 });
 

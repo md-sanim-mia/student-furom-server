@@ -10,7 +10,7 @@ import { sendEmail } from "../../utility/sendEmail";
 const createUserForDb = async (playood: TUser) => {
   const isExist = await Users.findOne({ email: playood.email });
   if (isExist) {
-    throw new Error("user alredy exist ");
+    throw new Error("This email address is already registered. ");
   }
   const result = await Users.create(playood);
   return result;
@@ -34,7 +34,7 @@ const getSingleUsersForDb = async (userId: string) => {
 };
 
 const updateSingleUsersForDb = async (userId: string, playood: TUpdateUser) => {
-  const result = await Users.findOneAndUpdate({ _id: userId }, playood, {
+  const result = await Users.findByIdAndUpdate(userId, playood, {
     new: true,
   }).select("-password");
   return result;
@@ -83,6 +83,7 @@ const addDesignationSingleUsersForDb = async (
   }
   return result;
 };
+
 const logingUsersForDb = async (playood: Partial<TUser>) => {
   if (!playood.email || !playood.password) {
     throw new Error("Email and password are required!");
@@ -91,7 +92,7 @@ const logingUsersForDb = async (playood: Partial<TUser>) => {
   if (!user) {
     throw new Error("Invalid email or password Please try again!");
   }
-  const comperPassword = bcrypt.compare(playood.password, user.password);
+  const comperPassword = await bcrypt.compare(playood.password, user.password);
 
   if (!comperPassword) {
     throw new Error("Invalid email or password Please try again!");
@@ -130,26 +131,32 @@ const chengePasswordForDb = async (
     throw new Error("user not found");
   }
 
-  const comperPassword = bcrypt.compare(
+  const comperPassword = await bcrypt.compare(
     playood.oldPassword,
     isUserExist.password
   );
 
   if (!comperPassword) {
-    throw new Error("Invalid email or password Please try again!");
+    throw new Error("The old password is incorrect. Please try again");
   }
   const hasNewPassword = await bcrypt.hash(playood.newPassword, 10);
   if (!hasNewPassword) {
     throw new Error(" bcrypt solt generate problem ");
   }
-  const result = await Users.findOne({
-    email: userData?.email,
-    role: userData?.role,
-  });
+  const result = await Users.findOneAndUpdate(
+    {
+      email: userData?.email,
+      role: userData?.role,
+    },
+    {
+      password: hasNewPassword,
+    }
+  );
   if (!result) {
     throw new Error(" password chenge problem ");
   }
-  return null;
+
+  return result;
 };
 
 const forgotPasswordForDb = async (userEmail: string) => {
