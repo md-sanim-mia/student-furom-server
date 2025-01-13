@@ -33,6 +33,15 @@ const getAllBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0,
         data: result
     });
 }));
+const getSingleBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const result = yield book_services_1.bookServices.getSingleBookFromDB(id);
+    res.status(200).json({
+        success: true,
+        message: "Get single book successfully",
+        data: result
+    });
+}));
 const deleteBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const result = yield book_services_1.bookServices.deleteBookFromDB(id);
@@ -43,8 +52,9 @@ const deleteBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0,
     });
 }));
 const updateBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('update');
     const id = req.params.id;
-    const { updateDoc } = req.body;
+    const updateDoc = req.body;
     const result = yield book_services_1.bookServices.updateBookFromDB(id, updateDoc);
     res.status(200).json({
         success: true,
@@ -54,4 +64,5 @@ const updateBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0,
 }));
 exports.bookContrller = {
     createBook, getAllBook, deleteBook, updateBook,
+    getSingleBook
 };

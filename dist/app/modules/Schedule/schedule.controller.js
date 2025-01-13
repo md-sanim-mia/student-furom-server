@@ -12,6 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.scheduleController = void 0;
 const async_catch_1 = require("../../utility/async.catch");
 const schedule_services_1 = require("./schedule.services");
+const getAllSchedule = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield schedule_services_1.scheduleServices.getAllSceduleFormDB();
+    res.status(200).json({
+        success: true,
+        message: "All schedule geted succesfully",
+        data: result
+    });
+}));
 const createShedule = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const scheduledata = req.body;
     const result = yield schedule_services_1.scheduleServices.createScheduleIntoDB(scheduledata);
@@ -41,5 +49,6 @@ const updateSchedule = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
     });
 }));
 exports.scheduleController = {
-    createShedule, deleteSchedule, updateSchedule
+    createShedule, deleteSchedule,
+    updateSchedule, getAllSchedule
 };

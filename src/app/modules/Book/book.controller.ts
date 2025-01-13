@@ -1,7 +1,7 @@
 
 import { bookServices } from "./book.services";
 import { asyncCatch } from "../../utility/async.catch";
-import { RequestHandler } from "express";
+
 
 const createBook=asyncCatch(async (req,res)=>{
    
@@ -29,7 +29,15 @@ const getAllBook=asyncCatch(async (req,res)=>{
 
 })
 
-
+const getSingleBook=asyncCatch(async (req,res)=>{
+    const id=req.params.id
+    const result=await bookServices.getSingleBookFromDB(id)
+    res.status(200).json({
+        success:true,
+        message:"Get single book successfully",
+        data:result
+    })
+})
 const deleteBook=asyncCatch(async (req,res)=>{
  
     const id=req.params.id
@@ -43,9 +51,9 @@ const deleteBook=asyncCatch(async (req,res)=>{
 })
 
 const updateBook =asyncCatch(async (req,res)=>{
-    
+    console.log('update')
     const id=req.params.id
-    const {updateDoc}=req.body
+    const updateDoc=req.body
     const result=await bookServices.updateBookFromDB(id,updateDoc)
     res.status(200).json({
        success: true,
@@ -56,5 +64,5 @@ const updateBook =asyncCatch(async (req,res)=>{
 })
 export const bookContrller={
     createBook,getAllBook,deleteBook,updateBook,
-   
+    getSingleBook
 }
