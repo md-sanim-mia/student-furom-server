@@ -1,6 +1,7 @@
 import { model, Schema } from "mongoose";
 import { BloodGroup } from "./users.const";
 import bcrypt from "bcrypt";
+import { TUser } from "./users.interface";
 const usersSchema = new Schema<TUser>(
   {
     name: { type: String, required: true },
@@ -20,7 +21,7 @@ const usersSchema = new Schema<TUser>(
       default: "in-progress",
       required: false,
     },
-    designation:{ type: String, default: "normal user", required: false },
+    designation: { type: String, default: "normal user", required: false },
     facebook: { type: String, default: "", required: false },
     linkedIn: { type: String, default: "", required: false },
     gender: { type: String, enum: ["Male", "Female", "Other"], required: true },

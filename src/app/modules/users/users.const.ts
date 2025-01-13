@@ -1,3 +1,5 @@
+import { TBloodGroups } from "../bloodRequest/blood.request.interface";
+
 export const Department = [
   "Computer Science",
   "Engineering",
@@ -16,7 +18,7 @@ export const Department = [
   "Sociology",
 ];
 
-export const BloodGroup: TBloodGroup[] = [
+export const BloodGroup: TBloodGroups[] = [
   "A+",
   "A-",
   "B+",

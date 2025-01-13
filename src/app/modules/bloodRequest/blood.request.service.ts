@@ -1,3 +1,5 @@
+import queryBuilders from "../../builder/queryBuilder";
+import { BloodRequestSearchbleFields } from "./blood.request.constant";
 import { TBloodRequest } from "./blood.request.interface";
 import { BloodRequest } from "./blood.request.model";
 
@@ -6,8 +8,15 @@ const createBloodRequestForDb = async (playood: TBloodRequest) => {
   return result;
 };
 
-const getAllBloodRequestForDb = async () => {
-  const result = await BloodRequest.find({});
+const getAllBloodRequestForDb = async (query: Record<string, unknown>) => {
+  const userQuery = new queryBuilders(BloodRequest.find(), query)
+    .search(BloodRequestSearchbleFields)
+    .filter()
+    .sort()
+    .paginate();
+
+  const result = await userQuery?.modelQuery;
+
   return result;
 };
 
@@ -24,6 +33,30 @@ const deleteSingleBloodRequestForDb = async (userId: string) => {
   const result = await BloodRequest.deleteOne({ _id: userId });
   return result;
 };
+const ApproveStatusSingleBloodRequestForDb = async (id: string) => {
+  const result = await BloodRequest.findByIdAndUpdate(
+    id,
+    {
+      $set: { status: "approved" },
+    },
+    {
+      new: true,
+    }
+  );
+  return result;
+};
+const rejectStatusSingleBloodRequestForDb = async (id: string) => {
+  const result = await BloodRequest.findByIdAndUpdate(
+    id,
+    {
+      $set: { status: "rejected" },
+    },
+    {
+      new: true,
+    }
+  );
+  return result;
+};
 
 export const bloodRequestService = {
   createBloodRequestForDb,
@@ -31,4 +64,6 @@ export const bloodRequestService = {
   getSingleBloodRequestForDb,
   deleteSingleBloodRequestForDb,
   pendingBloodRequestForDb,
+  ApproveStatusSingleBloodRequestForDb,
+  rejectStatusSingleBloodRequestForDb,
 };
