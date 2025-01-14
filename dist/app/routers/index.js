@@ -12,6 +12,7 @@ const users_router_1 = require("../modules/users/users.router");
 const Advertising_toutr_1 = require("../modules/Advertising/Advertising.toutr");
 const previousCommitte_route_1 = require("../modules/PreviousCommitte/previousCommitte.route");
 const gallary_routes_1 = require("../modules/Gallary/gallary.routes");
+const magazine_route_1 = require("../modules/Magazine/magazine.route");
 const router = express_1.default.Router();
 const modulesRouter = [
     {
@@ -45,6 +46,10 @@ const modulesRouter = [
     {
         path: '/gallary',
         route: gallary_routes_1.GallaryRouters
+    },
+    {
+        path: '/magazine',
+        route: magazine_route_1.MagazineRouters
     }
 ];
 modulesRouter.forEach((route) => router.use(route.path, route.route));

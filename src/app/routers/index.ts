@@ -7,6 +7,7 @@ import { usersRouters } from "../modules/users/users.router";
 import { AdvertisngRoutes } from "../modules/Advertising/Advertising.toutr";
 import { PreviousRouters } from "../modules/PreviousCommitte/previousCommitte.route";
 import { GallaryRouters } from "../modules/Gallary/gallary.routes";
+import { MagazineRouters } from "../modules/Magazine/magazine.route";
 
 const router = express.Router();
 
@@ -42,6 +43,10 @@ const modulesRouter = [
     {
         path:'/gallary',
         route:GallaryRouters
+    },
+    {
+        path:'/magazine',
+        route:MagazineRouters
     }
 ]
 

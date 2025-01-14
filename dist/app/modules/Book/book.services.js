@@ -17,9 +17,10 @@ const createBookIntoDB = (playload) => __awaiter(void 0, void 0, void 0, functio
     return result;
 });
 const getAllBookFromDB = (search) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("it is ", search);
     const query = search ? {
         $or: [
-            { book_name: { $regex: search, $options: "i" } },
+            { category: { $regex: search, $options: "i" } },
         ],
     }
         : {};
