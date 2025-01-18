@@ -51,6 +51,19 @@ const updateSingleUser = asyncCatch(async (req, res) => {
     data: result,
   });
 });
+const updateSocilLink = asyncCatch(async (req, res) => {
+  const playood = req.body;
+  const userEmail = req?.user?.email;
+  const result = await usersServices.updateSocilLinkUsersForDb(
+    userEmail,
+    playood
+  );
+  res.status(200).json({
+    success: true,
+    message: "update single user for db",
+    data: result,
+  });
+});
 
 const deleteSingleUser = asyncCatch(async (req, res) => {
   const { userId } = req.params;
@@ -155,4 +168,5 @@ export const usersContllors = {
   chengePassword,
   forgotPassword,
   resetPasswor,
+  updateSocilLink,
 };

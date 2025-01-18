@@ -49,5 +49,10 @@ router.post(
   validationRequest(usersValidation.resetPasswordValidationSchema),
   usersContllors.resetPasswor
 );
+router.patch(
+  "/update-link",
+  validationRequest(usersValidation.updateSocilLinkValidationSchema),
+  usersContllors.updateSocilLink
+);
 
 export const usersRouters = router;

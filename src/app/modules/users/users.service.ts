@@ -4,7 +4,7 @@ import { userSearchbleFields } from "./users.const";
 import { Users } from "./users.model";
 import bcrypt from "bcrypt";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { TchengePassword, TUpdateUser, TUser } from "./users.interface";
+import { TchengePassword, TLinks, TUpdateUser, TUser } from "./users.interface";
 import { createToken } from "./user.utils";
 import { sendEmail } from "../../utility/sendEmail";
 const createUserForDb = async (playood: TUser) => {
@@ -219,6 +219,13 @@ const resetPasswordForDb = async (
   );
   return null;
 };
+
+const updateSocilLinkUsersForDb = async (userId: string, playood: TLinks) => {
+  const result = await Users.findOneAndUpdate({ email: userId }, playood, {
+    new: true,
+  }).select("-password");
+  return result;
+};
 export const usersServices = {
   createUserForDb,
   getAllUsersForDb,
@@ -233,4 +240,5 @@ export const usersServices = {
   chengePasswordForDb,
   forgotPasswordForDb,
   resetPasswordForDb,
+  updateSocilLinkUsersForDb,
 };

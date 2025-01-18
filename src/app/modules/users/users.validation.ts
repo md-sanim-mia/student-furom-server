@@ -61,6 +61,7 @@ const forgetPasswordValidationSchema = z.object({
     }),
   }),
 });
+
 const resetPasswordValidationSchema = z.object({
   body: z.object({
     id: z.string({
@@ -74,6 +75,21 @@ const resetPasswordValidationSchema = z.object({
   }),
 });
 
+const updateSocilLinkValidationSchema = z.object({
+  body: z.object({
+    facebook: z
+      .string({
+        required_error: "facebook is required!",
+      })
+      .optional(),
+    linkedIn: z
+      .string({
+        required_error: "linkind  is required!",
+      })
+      .optional(),
+  }),
+});
+
 export const usersValidation = {
   usersValidationSchema,
   usersUpdateValidationSchema,
@@ -81,4 +97,5 @@ export const usersValidation = {
   updatePasswordValidationSchema,
   forgetPasswordValidationSchema,
   resetPasswordValidationSchema,
+  updateSocilLinkValidationSchema,
 };
