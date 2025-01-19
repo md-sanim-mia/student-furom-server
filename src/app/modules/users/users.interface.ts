@@ -36,6 +36,10 @@ export type TUpdateUser = {
   gender?: "Male" | "Female" | "Other";
 };
 
+export type TLinks = {
+  facebook?: string;
+  linkedIn?: string;
+};
 export type TchengePassword = {
   newPassword: string;
   oldPassword: string;
