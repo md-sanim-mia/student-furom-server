@@ -53,7 +53,7 @@ const updateSingleUser = asyncCatch(async (req, res) => {
 });
 const updateSocilLink = asyncCatch(async (req, res) => {
   const playood = req.body;
-  const userEmail = req?.user?.email;
+  const userEmail = req?.query?.email as string;
   const result = await usersServices.updateSocilLinkUsersForDb(
     userEmail,
     playood
@@ -142,6 +142,14 @@ const forgotPassword = asyncCatch(async (req, res) => {
     data: result,
   });
 });
+const totalData = asyncCatch(async (req, res) => {
+  const result = await usersServices.totalDataForDb();
+  res.status(200).json({
+    success: true,
+    message: "totall data for db",
+    data: result,
+  });
+});
 const resetPasswor = asyncCatch(async (req, res) => {
   const token = req?.headers?.authorization?.split(" ")[1];
   const playood = req?.body;
@@ -169,4 +177,5 @@ export const usersContllors = {
   forgotPassword,
   resetPasswor,
   updateSocilLink,
+  totalData,
 };

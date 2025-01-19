@@ -33,10 +33,7 @@ const updateBlog = asyncCatch(async (req, res) => {
 });
 
 const getAllBlog = asyncCatch(async (req, res) => {
-  let search = "";
-  if (req.query.q) {
-    search = req.query.q.toString();
-  }
+  let search = req?.query?.search as string;
   const result = await blogServices.getAllBlogFromDB(search);
   res.status(200).json({
     success: true,

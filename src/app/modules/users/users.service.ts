@@ -7,6 +7,8 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { TchengePassword, TLinks, TUpdateUser, TUser } from "./users.interface";
 import { createToken } from "./user.utils";
 import { sendEmail } from "../../utility/sendEmail";
+import { BloodRequest } from "../bloodRequest/blood.request.model";
+import { BookModel } from "../Book/book.model";
 const createUserForDb = async (playood: TUser) => {
   const isExist = await Users.findOne({ email: playood.email });
   if (isExist) {
@@ -202,7 +204,7 @@ const resetPasswordForDb = async (
     throw new Error("you are  unauthorization");
   }
 
-  const hasNewPassword = bcrypt.hash(playood.newPassword, 10);
+  const hasNewPassword = await bcrypt.hash(playood.newPassword, 10);
   if (!hasNewPassword) {
     throw new Error("bcrypt solt generate problem");
   }
@@ -220,11 +222,26 @@ const resetPasswordForDb = async (
   return null;
 };
 
-const updateSocilLinkUsersForDb = async (userId: string, playood: TLinks) => {
-  const result = await Users.findOneAndUpdate({ email: userId }, playood, {
+const updateSocilLinkUsersForDb = async (email: string, playood: TLinks) => {
+  console.log(email);
+  const result = await Users.findOneAndUpdate({ email: email }, playood, {
     new: true,
   }).select("-password");
   return result;
+};
+
+const totalDataForDb = async () => {
+  const result = (await Users.find({})).length;
+  const result1 = (await BloodRequest.find({})).length;
+  const result2 = (await BookModel.find({})).length;
+  const result3 = (await Users.find({})).length;
+
+  return {
+    totallUser: result,
+    totallBloodRequest: result1,
+    totallBookRequest: result2,
+    totallTusationRequest: result3,
+  };
 };
 export const usersServices = {
   createUserForDb,
@@ -241,4 +258,5 @@ export const usersServices = {
   forgotPasswordForDb,
   resetPasswordForDb,
   updateSocilLinkUsersForDb,
+  totalDataForDb,
 };
