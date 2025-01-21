@@ -1,6 +1,6 @@
 type TBloodGroup = "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "O+" | "O-";
 
-type TUser = {
+export type TUser = {
   name: string;
   email: string;
   password: string;
@@ -18,7 +18,7 @@ type TUser = {
   linkedIn?: string;
   gender: "Male" | "Female" | "Other";
 };
-type TUpdateUser = {
+export type TUpdateUser = {
   name?: string;
   email?: string;
   phoneNumber?: string;
@@ -34,4 +34,9 @@ type TUpdateUser = {
   facebook?: string;
   linkedIn?: string;
   gender?: "Male" | "Female" | "Other";
+};
+
+export type TchengePassword = {
+  newPassword: string;
+  oldPassword: string;
 };

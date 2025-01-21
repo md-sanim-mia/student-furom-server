@@ -34,17 +34,27 @@ const logingUsers = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0
     const result = yield users_service_1.usersServices.logingUsersForDb(playood);
     res.status(200).json({
         success: true,
-        message: "get all users for db",
+        message: "success fully login",
         data: result,
     });
 }));
 const getSingleUser = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { userId } = req.params;
-    const result = yield users_service_1.usersServices.getSingleUsersForDb(userId);
+    var _a;
+    const email = (_a = req === null || req === void 0 ? void 0 : req.query) === null || _a === void 0 ? void 0 : _a.email;
+    const result = yield users_service_1.usersServices.getSingleUsersForDb(email);
     res.status(200).json({
         success: true,
         message: "get single user for db",
         data: result,
+    });
+}));
+const getSingleUserById = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.userid;
+    const result = yield users_service_1.usersServices.getSingleUserFromDBById(id);
+    res.status(200).json({
+        success: true,
+        message: "Get single User successfully",
+        data: result
     });
 }));
 const updateSingleUser = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -105,6 +115,37 @@ const updateRoleSingleUser = (0, async_catch_1.asyncCatch)((req, res) => __await
         data: result,
     });
 }));
+const chengePassword = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield users_service_1.usersServices.chengePasswordForDb(req === null || req === void 0 ? void 0 : req.user, req.body);
+    console.log;
+    res.status(200).json({
+        success: true,
+        message: "success fully chenge password",
+        data: result,
+    });
+}));
+const forgotPassword = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    const email = (_a = req === null || req === void 0 ? void 0 : req.body) === null || _a === void 0 ? void 0 : _a.email;
+    const result = yield users_service_1.usersServices.forgotPasswordForDb(email);
+    res.status(200).json({
+        success: true,
+        message: "reset link success fully generated",
+        data: result,
+    });
+}));
+const resetPasswor = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b;
+    const token = (_b = (_a = req === null || req === void 0 ? void 0 : req.headers) === null || _a === void 0 ? void 0 : _a.authorization) === null || _b === void 0 ? void 0 : _b.split(" ")[1];
+    console.log("it is token ", token);
+    const playood = req === null || req === void 0 ? void 0 : req.body;
+    const result = yield users_service_1.usersServices.resetPasswordForDb(playood, token);
+    console.log(result);
+    res.status(200).json({
+        success: true,
+        message: "success fully updated your password please login !",
+    });
+}));
 exports.usersContllors = {
     createUsers,
     getAllUsers,
@@ -116,4 +157,8 @@ exports.usersContllors = {
     addDesignationSingleUsers,
     logingUsers,
     updateRoleSingleUser,
+    chengePassword,
+    forgotPassword,
+    resetPasswor,
+    getSingleUserById
 };

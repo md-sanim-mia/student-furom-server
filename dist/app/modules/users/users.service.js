@@ -14,13 +14,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.usersServices = void 0;
 const queryBuilder_1 = __importDefault(require("../../builder/queryBuilder"));
+const confing_1 = __importDefault(require("../../confing"));
+const mongodb_1 = require("mongodb");
 const users_const_1 = require("./users.const");
 const users_model_1 = require("./users.model");
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const user_utils_1 = require("./user.utils");
+const sendEmail_1 = require("../../utility/sendEmail");
 const createUserForDb = (playood) => __awaiter(void 0, void 0, void 0, function* () {
     const isExist = yield users_model_1.Users.findOne({ email: playood.email });
     if (isExist) {
-        throw new Error("user alredy exist ");
+        throw new Error("This email address is already registered. ");
     }
     const result = yield users_model_1.Users.create(playood);
     return result;
@@ -35,11 +40,11 @@ const getAllUsersForDb = (query) => __awaiter(void 0, void 0, void 0, function* 
     return result;
 });
 const getSingleUsersForDb = (userId) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield users_model_1.Users.findOne({ _id: userId }).select("-password");
+    const result = yield users_model_1.Users.findOne({ email: userId }).select("-password");
     return result;
 });
 const updateSingleUsersForDb = (userId, playood) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield users_model_1.Users.findOneAndUpdate({ _id: userId }, playood, {
+    const result = yield users_model_1.Users.findByIdAndUpdate(userId, playood, {
         new: true,
     }).select("-password");
     return result;
@@ -79,12 +84,12 @@ const logingUsersForDb = (playood) => __awaiter(void 0, void 0, void 0, function
     if (!user) {
         throw new Error("Invalid email or password Please try again!");
     }
-    const comperPassword = bcrypt_1.default.compare(playood.password, user.password);
+    const comperPassword = yield bcrypt_1.default.compare(playood.password, user.password);
     if (!comperPassword) {
         throw new Error("Invalid email or password Please try again!");
     }
-    const result = yield users_model_1.Users.findOne({ email: playood.email }).select("-password");
-    return result;
+    const token = jsonwebtoken_1.default.sign({ email: user.email, role: user.role }, confing_1.default.jwt_scrict, { expiresIn: "3d" });
+    return { token, email: user === null || user === void 0 ? void 0 : user.email };
 });
 const updateUserRoleForDb = (userId, playood) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield users_model_1.Users.updateOne({ _id: userId }, {
@@ -93,6 +98,81 @@ const updateUserRoleForDb = (userId, playood) => __awaiter(void 0, void 0, void 
     if (!result) {
         throw new Error("dose not update user role");
     }
+    return result;
+});
+const chengePasswordForDb = (userData, playood) => __awaiter(void 0, void 0, void 0, function* () {
+    const isUserExist = yield users_model_1.Users.findOne({
+        email: userData === null || userData === void 0 ? void 0 : userData.email,
+        role: userData === null || userData === void 0 ? void 0 : userData.role,
+    });
+    if (!isUserExist) {
+        throw new Error("user not found");
+    }
+    const comperPassword = yield bcrypt_1.default.compare(playood.oldPassword, isUserExist.password);
+    if (!comperPassword) {
+        throw new Error("The old password is incorrect. Please try again");
+    }
+    const hasNewPassword = yield bcrypt_1.default.hash(playood.newPassword, 10);
+    if (!hasNewPassword) {
+        throw new Error(" bcrypt solt generate problem ");
+    }
+    const result = yield users_model_1.Users.findOneAndUpdate({
+        email: userData === null || userData === void 0 ? void 0 : userData.email,
+        role: userData === null || userData === void 0 ? void 0 : userData.role,
+    }, {
+        password: hasNewPassword,
+    });
+    if (!result) {
+        throw new Error(" password chenge problem ");
+    }
+    return result;
+});
+const forgotPasswordForDb = (userEmail) => __awaiter(void 0, void 0, void 0, function* () {
+    const isUserExist = yield users_model_1.Users.findOne({
+        email: userEmail,
+    });
+    if (!isUserExist) {
+        throw new Error("user not found");
+    }
+    const jwtPayload = {
+        email: isUserExist === null || isUserExist === void 0 ? void 0 : isUserExist.email,
+        role: isUserExist === null || isUserExist === void 0 ? void 0 : isUserExist.role,
+    };
+    const accessToken = (0, user_utils_1.createToken)(jwtPayload, confing_1.default === null || confing_1.default === void 0 ? void 0 : confing_1.default.jwt_scrict, "6m");
+    const resetUiLink = `http://localhost:5173/reset-password/${isUserExist === null || isUserExist === void 0 ? void 0 : isUserExist._id}/${accessToken}`;
+    (0, sendEmail_1.sendEmail)(isUserExist.email, resetUiLink);
+});
+const resetPasswordForDb = (playood, token) => __awaiter(void 0, void 0, void 0, function* () {
+    const isUserExist = yield users_model_1.Users.findOne({
+        _id: playood.id,
+    });
+    if (!isUserExist) {
+        throw new Error("user not found");
+    }
+    const decoded = jsonwebtoken_1.default.verify(token, confing_1.default.jwt_scrict);
+    const user = yield users_model_1.Users.findOne({ _id: playood === null || playood === void 0 ? void 0 : playood.id });
+    console.log("user services ", user);
+    if (!user) {
+        throw new Error("you are  unauthorization");
+    }
+    if ((user === null || user === void 0 ? void 0 : user.email) !== decoded.email) {
+        throw new Error("you are  unauthorization");
+    }
+    const hasNewPassword = bcrypt_1.default.hash(playood.newPassword, 10);
+    if (!hasNewPassword) {
+        throw new Error("bcrypt solt generate problem");
+    }
+    const resetPassword = yield users_model_1.Users.findOneAndUpdate({ _id: playood.id }, {
+        password: hasNewPassword,
+    }, {
+        new: true,
+        runValidators: true,
+    });
+    return null;
+});
+const getSingleUserFromDBById = (userid) => __awaiter(void 0, void 0, void 0, function* () {
+    const query = { _id: new mongodb_1.ObjectId(userid) };
+    const result = yield users_model_1.Users.find(query);
     return result;
 });
 exports.usersServices = {
@@ -106,4 +186,8 @@ exports.usersServices = {
     addDesignationSingleUsersForDb,
     logingUsersForDb,
     updateUserRoleForDb,
+    chengePasswordForDb,
+    forgotPasswordForDb,
+    resetPasswordForDb,
+    getSingleUserFromDBById
 };

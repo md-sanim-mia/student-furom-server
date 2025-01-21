@@ -2,6 +2,7 @@ import expess from "express";
 import { usersContllors } from "./users.controllar";
 import { validationRequest } from "../../middlwares/validationRequest";
 import { usersValidation } from "./users.validation";
+import auth from "../../middlwares/auth";
 
 const router = expess.Router();
 
@@ -11,7 +12,8 @@ router.post(
   usersContllors.createUsers
 );
 router.get("/get-users", usersContllors.getAllUsers);
-router.get("/:userId", usersContllors.getSingleUser);
+router.get("/", usersContllors.getSingleUser);
+router.get('/:userid',usersContllors.getSingleUserById)
 router.patch(
   "/:userId",
   validationRequest(usersValidation.usersUpdateValidationSchema),
@@ -29,10 +31,24 @@ router.post(
   validationRequest(usersValidation.LogingValidationSchema),
   usersContllors.logingUsers
 );
-router.patch(
-  "/set-role/:userId",
+router.patch("/set-role/:userId", usersContllors.updateRoleSingleUser);
 
-  usersContllors.updateRoleSingleUser
+router.post(
+  "/chenge-password",
+  validationRequest(usersValidation.updatePasswordValidationSchema),
+  auth("user", "admin", "member"),
+  usersContllors.chengePassword
+);
+
+router.post(
+  "/forget-password",
+  validationRequest(usersValidation.forgetPasswordValidationSchema),
+  usersContllors.forgotPassword
+);
+router.post(
+  "/reset-password",
+  validationRequest(usersValidation.resetPasswordValidationSchema),
+  usersContllors.resetPasswor
 );
 
 export const usersRouters = router;

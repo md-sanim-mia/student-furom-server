@@ -48,8 +48,36 @@ const LogingValidationSchema = zod_1.z.object({
         password: zod_1.z.string({ required_error: "password is required" }),
     }),
 });
+const updatePasswordValidationSchema = zod_1.z.object({
+    body: zod_1.z.object({
+        newPassword: zod_1.z.string({ required_error: "new password is required" }),
+        oldPassword: zod_1.z.string({ required_error: "old password is required" }),
+    }),
+});
+const forgetPasswordValidationSchema = zod_1.z.object({
+    body: zod_1.z.object({
+        email: zod_1.z.string({
+            required_error: "User email is required!",
+        }),
+    }),
+});
+const resetPasswordValidationSchema = zod_1.z.object({
+    body: zod_1.z.object({
+        id: zod_1.z.string({
+            required_error: "id is required!",
+        }),
+        newPassword: zod_1.z
+            .string({
+            required_error: "new password is required!",
+        })
+            .min(6, "password must be 6 character"),
+    }),
+});
 exports.usersValidation = {
     usersValidationSchema,
     usersUpdateValidationSchema,
     LogingValidationSchema,
+    updatePasswordValidationSchema,
+    forgetPasswordValidationSchema,
+    resetPasswordValidationSchema,
 };

@@ -8,50 +8,65 @@ import { AdvertisngRoutes } from "../modules/Advertising/Advertising.toutr";
 import { PreviousRouters } from "../modules/PreviousCommitte/previousCommitte.route";
 import { GallaryRouters } from "../modules/Gallary/gallary.routes";
 import { MagazineRouters } from "../modules/Magazine/magazine.route";
-
+import { bloodRequestRouter } from "../modules/bloodRequest/blood.request.router";
+import { tutionRoutes } from "../modules/Tution/tution.routes";
+import { CommitteRoutes } from "../modules/PresentCommittee/Committee.routes";
 const router = express.Router();
 
 const modulesRouter = [
-    {
-        path: '/blog',
-        route: blogRoutes
-    },
-    {
-        path: '/book',
-        route: bookRouters
-    },
-    {
-        path: '/schedule',
-        route: scheduleRouters
-    },
-    {
-        path: '/complene',
-        route: compleneRouters
-    },
-    {
-        path: "/users",
-        route: usersRouters,
-    },
-    {
-        path:'/add',
-        route:AdvertisngRoutes
-    },
-    {
-        path:'/previousCommitte',
-        route:PreviousRouters
-    },
-    {
-        path:'/gallary',
-        route:GallaryRouters
-    },
-    {
-        path:'/magazine',
-        route:MagazineRouters
-    }
-]
-
-
-
+  {
+    path: '/blog',
+    route: blogRoutes
+  },
+  {
+    path: '/book',
+    route: bookRouters
+  },
+  {
+    path: "/schedule",
+    route: scheduleRouters,
+  },
+  {
+    path: "/complene",
+    route: compleneRouters,
+  },
+  {
+    path: "/users",
+    route: usersRouters,
+  },
+  {
+    path: "/blood-request",
+    route: bloodRequestRouter,
+  },
+  {
+    path: "/users",
+    route: usersRouters,
+  },
+  {
+    path: '/add',
+    route: AdvertisngRoutes
+  },
+  {
+    path: '/previousCommitte',
+    route: PreviousRouters
+  },
+  {
+    path: '/gallary',
+    route: GallaryRouters
+  },
+  {
+    path: '/magazine',
+    route: MagazineRouters
+  },
+  {
+    path:'/tution',
+    route:tutionRoutes
+  },
+  {
+    path:'/committee',
+    route:CommitteRoutes
+  }
+];
 
 modulesRouter.forEach((route) => router.use(route.path, route.route));
 export default router;

@@ -13,3 +13,4 @@ export const BloodGroup: TBloodGroups[] = [
 
 export const Genders: TGender[] = ["Male", "Female", "Other"];
 export const Status: TStatus[] = ["pending", "approved", "rejected"];
+export const BloodRequestSearchbleFields = ["patientName", "patientEmail"];

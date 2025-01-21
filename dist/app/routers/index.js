@@ -13,6 +13,9 @@ const Advertising_toutr_1 = require("../modules/Advertising/Advertising.toutr");
 const previousCommitte_route_1 = require("../modules/PreviousCommitte/previousCommitte.route");
 const gallary_routes_1 = require("../modules/Gallary/gallary.routes");
 const magazine_route_1 = require("../modules/Magazine/magazine.route");
+const blood_request_router_1 = require("../modules/bloodRequest/blood.request.router");
+const tution_routes_1 = require("../modules/Tution/tution.routes");
+const Committee_routes_1 = require("../modules/PresentCommittee/Committee.routes");
 const router = express_1.default.Router();
 const modulesRouter = [
     {
@@ -24,12 +27,20 @@ const modulesRouter = [
         route: book_routes_1.bookRouters
     },
     {
-        path: '/schedule',
-        route: schedule_routes_1.scheduleRouters
+        path: "/schedule",
+        route: schedule_routes_1.scheduleRouters,
     },
     {
-        path: '/complene',
-        route: complene_routes_1.compleneRouters
+        path: "/complene",
+        route: complene_routes_1.compleneRouters,
+    },
+    {
+        path: "/users",
+        route: users_router_1.usersRouters,
+    },
+    {
+        path: "/blood-request",
+        route: blood_request_router_1.bloodRequestRouter,
     },
     {
         path: "/users",
@@ -50,6 +61,14 @@ const modulesRouter = [
     {
         path: '/magazine',
         route: magazine_route_1.MagazineRouters
+    },
+    {
+        path: '/tution',
+        route: tution_routes_1.tutionRoutes
+    },
+    {
+        path: '/committee',
+        route: Committee_routes_1.CommitteRoutes
     }
 ];
 modulesRouter.forEach((route) => router.use(route.path, route.route));
