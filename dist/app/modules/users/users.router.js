@@ -24,4 +24,6 @@ router.patch("/set-role/:userId", users_controllar_1.usersContllors.updateRoleSi
 router.post("/chenge-password", (0, validationRequest_1.validationRequest)(users_validation_1.usersValidation.updatePasswordValidationSchema), (0, auth_1.default)("user", "admin", "member"), users_controllar_1.usersContllors.chengePassword);
 router.post("/forget-password", (0, validationRequest_1.validationRequest)(users_validation_1.usersValidation.forgetPasswordValidationSchema), users_controllar_1.usersContllors.forgotPassword);
 router.post("/reset-password", (0, validationRequest_1.validationRequest)(users_validation_1.usersValidation.resetPasswordValidationSchema), users_controllar_1.usersContllors.resetPasswor);
+router.post("/update-link", (0, validationRequest_1.validationRequest)(users_validation_1.usersValidation.updateSocilLinkValidationSchema), users_controllar_1.usersContllors.updateSocilLink);
+router.get("/totall-data", users_controllar_1.usersContllors.totalData);
 exports.usersRouters = router;

@@ -41,10 +41,8 @@ const updateBlog = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0,
     });
 }));
 const getAllBlog = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let search = "";
-    if (req.query.q) {
-        search = req.query.q.toString();
-    }
+    var _a;
+    let search = (_a = req === null || req === void 0 ? void 0 : req.query) === null || _a === void 0 ? void 0 : _a.search;
     const result = yield blog_services_1.blogServices.getAllBlogFromDB(search);
     res.status(200).json({
         success: true,

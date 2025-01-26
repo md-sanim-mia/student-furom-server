@@ -50,5 +50,11 @@ router.post(
   validationRequest(usersValidation.resetPasswordValidationSchema),
   usersContllors.resetPasswor
 );
+router.post(
+  "/update-link",
+  validationRequest(usersValidation.updateSocilLinkValidationSchema),
+  usersContllors.updateSocilLink
+);
+router.get("/totall-data", usersContllors.totalData);
 
 export const usersRouters = router;

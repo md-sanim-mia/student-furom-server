@@ -22,6 +22,8 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const user_utils_1 = require("./user.utils");
 const sendEmail_1 = require("../../utility/sendEmail");
+const blood_request_model_1 = require("../bloodRequest/blood.request.model");
+const book_model_1 = require("../Book/book.model");
 const createUserForDb = (playood) => __awaiter(void 0, void 0, void 0, function* () {
     const isExist = yield users_model_1.Users.findOne({ email: playood.email });
     if (isExist) {
@@ -158,7 +160,7 @@ const resetPasswordForDb = (playood, token) => __awaiter(void 0, void 0, void 0,
     if ((user === null || user === void 0 ? void 0 : user.email) !== decoded.email) {
         throw new Error("you are  unauthorization");
     }
-    const hasNewPassword = bcrypt_1.default.hash(playood.newPassword, 10);
+    const hasNewPassword = yield bcrypt_1.default.hash(playood.newPassword, 10);
     if (!hasNewPassword) {
         throw new Error("bcrypt solt generate problem");
     }
@@ -175,6 +177,25 @@ const getSingleUserFromDBById = (userid) => __awaiter(void 0, void 0, void 0, fu
     const result = yield users_model_1.Users.find(query);
     return result;
 });
+const updateSocilLinkUsersForDb = (email, playood) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(email);
+    const result = yield users_model_1.Users.findOneAndUpdate({ email: email }, playood, {
+        new: true,
+    }).select("-password");
+    return result;
+});
+const totalDataForDb = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = (yield users_model_1.Users.find({})).length;
+    const result1 = (yield blood_request_model_1.BloodRequest.find({})).length;
+    const result2 = (yield book_model_1.BookModel.find({})).length;
+    const result3 = (yield users_model_1.Users.find({})).length;
+    return {
+        totallUser: result,
+        totallBloodRequest: result1,
+        totallBookRequest: result2,
+        totallTusationRequest: result3,
+    };
+});
 exports.usersServices = {
     createUserForDb,
     getAllUsersForDb,
@@ -189,5 +210,7 @@ exports.usersServices = {
     chengePasswordForDb,
     forgotPasswordForDb,
     resetPasswordForDb,
-    getSingleUserFromDBById
+    getSingleUserFromDBById,
+    updateSocilLinkUsersForDb,
+    totalDataForDb,
 };

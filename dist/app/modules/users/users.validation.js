@@ -73,6 +73,20 @@ const resetPasswordValidationSchema = zod_1.z.object({
             .min(6, "password must be 6 character"),
     }),
 });
+const updateSocilLinkValidationSchema = zod_1.z.object({
+    body: zod_1.z.object({
+        facebook: zod_1.z
+            .string({
+            required_error: "facebook is required!",
+        })
+            .optional(),
+        linkedIn: zod_1.z
+            .string({
+            required_error: "linkind  is required!",
+        })
+            .optional(),
+    }),
+});
 exports.usersValidation = {
     usersValidationSchema,
     usersUpdateValidationSchema,
@@ -80,4 +94,5 @@ exports.usersValidation = {
     updatePasswordValidationSchema,
     forgetPasswordValidationSchema,
     resetPasswordValidationSchema,
+    updateSocilLinkValidationSchema,
 };

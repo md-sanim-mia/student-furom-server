@@ -60,6 +60,19 @@ const updateSingleUser = asyncCatch(async (req, res) => {
     data: result,
   });
 });
+const updateSocilLink = asyncCatch(async (req, res) => {
+  const playood = req.body;
+  const userEmail = req?.query?.email as string;
+  const result = await usersServices.updateSocilLinkUsersForDb(
+    userEmail,
+    playood
+  );
+  res.status(200).json({
+    success: true,
+    message: "update single user for db",
+    data: result,
+  });
+});
 
 const deleteSingleUser = asyncCatch(async (req, res) => {
   const { userId } = req.params;
@@ -138,6 +151,16 @@ const forgotPassword = asyncCatch(async (req, res) => {
     data: result,
   });
 });
+const totalData = asyncCatch(async (req, res) => {
+  console.log("Sanim bhai")
+  const result = await usersServices.totalDataForDb();
+  console.log("Sanim bhai ",result)
+  res.status(200).json({
+    success: true,
+    message: "totall data for db",
+    data: result,
+  });
+});
 const resetPasswor = asyncCatch(async (req, res) => {
   const token = req?.headers?.authorization?.split(" ")[1];
   console.log("it is token ",token)
@@ -166,5 +189,7 @@ export const usersContllors = {
   chengePassword,
   forgotPassword,
   resetPasswor,
-  getSingleUserById
+  getSingleUserById,
+  updateSocilLink,
+  totalData,
 };

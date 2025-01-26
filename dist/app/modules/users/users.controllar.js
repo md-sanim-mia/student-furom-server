@@ -67,6 +67,17 @@ const updateSingleUser = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(v
         data: result,
     });
 }));
+const updateSocilLink = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    const playood = req.body;
+    const userEmail = (_a = req === null || req === void 0 ? void 0 : req.query) === null || _a === void 0 ? void 0 : _a.email;
+    const result = yield users_service_1.usersServices.updateSocilLinkUsersForDb(userEmail, playood);
+    res.status(200).json({
+        success: true,
+        message: "update single user for db",
+        data: result,
+    });
+}));
 const deleteSingleUser = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId } = req.params;
     const result = yield users_service_1.usersServices.deleteSingleUsersForDb(userId);
@@ -134,6 +145,16 @@ const forgotPassword = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
         data: result,
     });
 }));
+const totalData = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("Sanim bhai");
+    const result = yield users_service_1.usersServices.totalDataForDb();
+    console.log("Sanim bhai ", result);
+    res.status(200).json({
+        success: true,
+        message: "totall data for db",
+        data: result,
+    });
+}));
 const resetPasswor = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     const token = (_b = (_a = req === null || req === void 0 ? void 0 : req.headers) === null || _a === void 0 ? void 0 : _a.authorization) === null || _b === void 0 ? void 0 : _b.split(" ")[1];
@@ -160,5 +181,7 @@ exports.usersContllors = {
     chengePassword,
     forgotPassword,
     resetPasswor,
-    getSingleUserById
+    getSingleUserById,
+    updateSocilLink,
+    totalData,
 };
