@@ -1,5 +1,6 @@
 import queryBuilders from "../../builder/queryBuilder";
 import confing from "../../confing";
+import { ObjectId } from "mongodb";
 import { userSearchbleFields } from "./users.const";
 import { Users } from "./users.model";
 import bcrypt from "bcrypt";
@@ -191,12 +192,13 @@ const resetPasswordForDb = async (
   const isUserExist = await Users.findOne({
     _id: playood.id,
   });
+  
   if (!isUserExist) {
     throw new Error("user not found");
   }
   const decoded = jwt.verify(token, confing.jwt_scrict as string) as JwtPayload;
   const user = await Users.findOne({ _id: playood?.id });
-
+  console.log("user services ",user)
   if (!user) {
     throw new Error("you are  unauthorization");
   }
@@ -222,6 +224,14 @@ const resetPasswordForDb = async (
   return null;
 };
 
+const getSingleUserFromDBById=async (userid:string)=>{
+  
+  const query={_id:new ObjectId(userid)}
+
+  const result=await Users.find(query)
+  
+  return result
+}
 const updateSocilLinkUsersForDb = async (email: string, playood: TLinks) => {
   console.log(email);
   const result = await Users.findOneAndUpdate({ email: email }, playood, {
@@ -257,6 +267,7 @@ export const usersServices = {
   chengePasswordForDb,
   forgotPasswordForDb,
   resetPasswordForDb,
+  getSingleUserFromDBById,
   updateSocilLinkUsersForDb,
   totalDataForDb,
 };

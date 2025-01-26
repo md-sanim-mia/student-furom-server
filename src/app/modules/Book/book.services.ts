@@ -8,9 +8,10 @@ const createBookIntoDB=async (playload:TBook)=>{
 }
 
 const getAllBookFromDB=async (search:string)=>{
+    console.log("it is ",search)
     const query= search? {
         $or: [
-            { book_name: { $regex: search, $options: "i" } }, 
+            { category: { $regex: search, $options: "i" } }, 
         ],
     }
   : {};

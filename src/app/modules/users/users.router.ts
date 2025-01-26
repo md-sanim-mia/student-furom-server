@@ -13,6 +13,7 @@ router.post(
 );
 router.get("/get-users", usersContllors.getAllUsers);
 router.get("/", usersContllors.getSingleUser);
+router.get('/:userid',usersContllors.getSingleUserById)
 router.patch(
   "/:userId",
   validationRequest(usersValidation.usersUpdateValidationSchema),

@@ -1,7 +1,6 @@
 
 import expess from 'express'
 import { bookContrller } from './book.controller'
-
 const router=expess.Router()
 
 router.post('/create-book',bookContrller.createBook)

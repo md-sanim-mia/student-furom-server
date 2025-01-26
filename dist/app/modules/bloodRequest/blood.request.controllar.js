@@ -22,7 +22,7 @@ const createBloodRequest = (0, async_catch_1.asyncCatch)((req, res) => __awaiter
     });
 }));
 const getAllBloodRequest = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield blood_request_service_1.bloodRequestService.getAllBloodRequestForDb();
+    const result = yield blood_request_service_1.bloodRequestService.getAllBloodRequestForDb(req.query);
     res.status(200).json({
         success: true,
         message: "get all blood request for db",
@@ -55,10 +55,30 @@ const deletedSingleBloodRequest = (0, async_catch_1.asyncCatch)((req, res) => __
         data: result,
     });
 }));
+const approvedSingleBloodRequest = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { bloodRequestId } = req.params;
+    const result = yield blood_request_service_1.bloodRequestService.ApproveStatusSingleBloodRequestForDb(bloodRequestId);
+    res.status(200).json({
+        success: true,
+        message: "blood request satus approved for db ",
+        data: result,
+    });
+}));
+const rejectedSingleBloodRequest = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { bloodRequestId } = req.params;
+    const result = yield blood_request_service_1.bloodRequestService.rejectStatusSingleBloodRequestForDb(bloodRequestId);
+    res.status(200).json({
+        success: true,
+        message: " blood request satus rejected for db ",
+        data: result,
+    });
+}));
 exports.bloodRequestControllar = {
     createBloodRequest,
     getAllBloodRequest,
     getSingleBloodRequest,
     deletedSingleBloodRequest,
     pendingBloodRequest,
+    approvedSingleBloodRequest,
+    rejectedSingleBloodRequest,
 };

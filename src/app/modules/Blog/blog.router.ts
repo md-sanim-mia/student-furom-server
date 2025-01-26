@@ -9,6 +9,6 @@ router.delete("/delete/:id", auth("admin"), blogController.deleteBlog);
 router.patch("/update/:id", auth("admin"), blogController.updateBlog);
 router.get("/getAll", blogController.getAllBlog);
 router.get("/getMyBlogs", auth("admin"), blogController.getMyBlog);
-router.get("/getSingle/:id", auth("admin"), blogController.getSingleBlog);
+router.get("/getSingle/:id", blogController.getSingleBlog);
 
 export const blogRoutes = router;

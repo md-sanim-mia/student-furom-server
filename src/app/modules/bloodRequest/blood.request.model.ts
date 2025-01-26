@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
 import { TBloodRequest } from "./blood.request.interface";
 import { BloodGroup, Genders, Status } from "./blood.request.constant";
-import { string } from "zod";
+
 
 const bloodRequestSchema = new Schema<TBloodRequest>(
   {
@@ -19,7 +19,7 @@ const bloodRequestSchema = new Schema<TBloodRequest>(
     neededByDeadline: { type: String, required: true },
     hospitalAddress: { type: String, required: true },
     hospitalName: { type: String, required: true },
-
+    
     requesterGender: {
       type: String,
       enum: Genders,
