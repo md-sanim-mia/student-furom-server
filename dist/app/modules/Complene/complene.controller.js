@@ -21,6 +21,14 @@ const createComplene = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
         data: result
     });
 }));
+const getAllComplene = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield complene_services_1.compleneServices.getAllCompleneFromDB();
+    res.status(200).json({
+        success: true,
+        message: "Get all complene successfully",
+        data: result
+    });
+}));
 const deleteComplene = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const result = yield complene_services_1.compleneServices.deleteCompleneFromDB(id);
@@ -31,5 +39,5 @@ const deleteComplene = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
     });
 }));
 exports.compleneContrller = {
-    createComplene, deleteComplene
+    createComplene, deleteComplene, getAllComplene
 };

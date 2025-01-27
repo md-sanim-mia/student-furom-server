@@ -17,7 +17,6 @@ const createBookIntoDB = (playload) => __awaiter(void 0, void 0, void 0, functio
     return result;
 });
 const getAllBookFromDB = (search) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("it is ", search);
     const query = search ? {
         $or: [
             { category: { $regex: search, $options: "i" } },
