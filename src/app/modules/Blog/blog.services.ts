@@ -23,7 +23,6 @@ const getSingleBlogFromDB = async (id: string) => {
   return result;
 };
 const getAllBlogFromDB = async (search: string) => {
-  
   const query = search
     ? {
         $or: [{ title: { $regex: search, $options: "i" } }],

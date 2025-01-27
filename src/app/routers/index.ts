@@ -15,12 +15,12 @@ const router = express.Router();
 
 const modulesRouter = [
   {
-    path: '/blog',
-    route: blogRoutes
+    path: "/blog",
+    route: blogRoutes,
   },
   {
-    path: '/book',
-    route: bookRouters
+    path: "/book",
+    route: bookRouters,
   },
   {
     path: "/schedule",
@@ -43,29 +43,29 @@ const modulesRouter = [
     route: usersRouters,
   },
   {
-    path: '/add',
-    route: AdvertisngRoutes
+    path: "/add",
+    route: AdvertisngRoutes,
   },
   {
-    path: '/previousCommitte',
-    route: PreviousRouters
+    path: "/previousCommitte",
+    route: PreviousRouters,
   },
   {
-    path: '/gallary',
-    route: GallaryRouters
+    path: "/gallary",
+    route: GallaryRouters,
   },
   {
-    path: '/magazine',
-    route: MagazineRouters
+    path: "/magazine",
+    route: MagazineRouters,
   },
   {
-    path:'/tution',
-    route:tutionRoutes
+    path: "/tution",
+    route: tutionRoutes,
   },
   {
-    path:'/committee',
-    route:CommitteRoutes
-  }
+    path: "/committee",
+    route: CommitteRoutes,
+  },
 ];
 
 modulesRouter.forEach((route) => router.use(route.path, route.route));
