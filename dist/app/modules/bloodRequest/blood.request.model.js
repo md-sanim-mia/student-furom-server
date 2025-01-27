@@ -29,4 +29,5 @@ const bloodRequestSchema = new mongoose_1.Schema({
         default: "pending",
     },
 }, { timestamps: true });
+bloodRequestSchema.index({ createdAt: 1 }, { expireAfterSeconds: 12 * 24 * 60 * 60 });
 exports.BloodRequest = (0, mongoose_1.model)("BloodRequest", bloodRequestSchema);

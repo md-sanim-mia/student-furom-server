@@ -227,7 +227,6 @@ const resetPasswordForDb = async (
 const getSingleUserFromDBById=async (userid:string)=>{
   
   const query={_id:new ObjectId(userid)}
-
   const result=await Users.find(query)
   
   return result

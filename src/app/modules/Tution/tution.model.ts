@@ -8,7 +8,7 @@ const tutionSchema = new Schema<Ttution>({
     student_gender: { type: String, required: true },
     teacher_need: { type: String, required: true },
     salary: { type: Number, required: true },
-    class: { type: String, required: true }
+    class_s: { type: String, required: true }
 }
     ,
     {
@@ -16,4 +16,5 @@ const tutionSchema = new Schema<Ttution>({
     }
 )
 
+tutionSchema.index({ createdAt: 1 }, { expireAfterSeconds: 15 * 24 * 60 * 60  });
 export const tutionModel = model<Ttution>('tutionRequest', tutionSchema)

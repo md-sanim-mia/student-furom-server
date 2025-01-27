@@ -3,7 +3,7 @@
 export type Ttution={
     name:string,
     contact_number:string,
-    class:string,
+    class_s:string,
     location:string,
     salary:number,
     student_gender:string,
