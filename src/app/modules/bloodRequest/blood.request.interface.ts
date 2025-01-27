@@ -1,3 +1,5 @@
+import { Date } from "mongoose";
+
 export type TBloodGroups =
   | "A+"
   | "A-"
@@ -14,13 +16,13 @@ export type TBloodRequest = {
   patientName: string;
   patientEmail?: string;
   patientContactNumber: string;
-  patientAge: number;
+  patientAge: string;
   patientBloodGroup: TBloodGroups;
 
-  bagsNeeded: number;
-  neededByDeadline: string;
+  bagsNeeded: string;
+  neededByDeadline: Date;
   hospitalAddress: string;
-  hospitalName: string;
+  hospitalName?: string;
   status?: TStatus;
-  requesterGender: TGender;
+  gender: TGender;
 };
