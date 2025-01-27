@@ -7,5 +7,6 @@ export type Ttution={
     location:string,
     salary:number,
     student_gender:string,
-    teacher_need:string
+    teacher_need:string,
+   
 }

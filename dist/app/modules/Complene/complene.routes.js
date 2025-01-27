@@ -8,5 +8,6 @@ const express_1 = __importDefault(require("express"));
 const complene_controller_1 = require("./complene.controller");
 const router = express_1.default.Router();
 router.post('/create', complene_controller_1.compleneContrller.createComplene);
-router.delete('/delete', complene_controller_1.compleneContrller.deleteComplene);
+router.delete('/delete/:id', complene_controller_1.compleneContrller.deleteComplene);
+router.get('/getAll', complene_controller_1.compleneContrller.getAllComplene);
 exports.compleneRouters = router;

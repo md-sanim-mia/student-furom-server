@@ -12,6 +12,14 @@ const deleteCompleneFromDB=async (id:string)=>{
     const result =await compleneModel.deleteOne(query)
     return result
 }
+
+const getAllCompleneFromDB=async ()=>{
+    
+    const result=await compleneModel.find()
+    
+    return result
+}
 export const compleneServices={
-    createCompleneIntoDB,deleteCompleneFromDB
+    createCompleneIntoDB,deleteCompleneFromDB,
+    getAllCompleneFromDB
 }
