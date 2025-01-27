@@ -13,7 +13,8 @@ router.post(
 );
 router.get("/get-users", usersContllors.getAllUsers);
 router.get("/", usersContllors.getSingleUser);
-router.get('/:userid',usersContllors.getSingleUserById)
+router.get("/totall-data", usersContllors.totalData);
+router.get("/:userid", usersContllors.getSingleUserById);
 router.patch(
   "/:userId",
   validationRequest(usersValidation.usersUpdateValidationSchema),
@@ -55,6 +56,5 @@ router.post(
   validationRequest(usersValidation.updateSocilLinkValidationSchema),
   usersContllors.updateSocilLink
 );
-router.get("/totall-data", usersContllors.totalData);
 
 export const usersRouters = router;

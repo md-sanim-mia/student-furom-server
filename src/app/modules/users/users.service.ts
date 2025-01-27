@@ -1,6 +1,6 @@
 import queryBuilders from "../../builder/queryBuilder";
 import confing from "../../confing";
-import { ObjectId } from "mongodb";
+
 import { userSearchbleFields } from "./users.const";
 import { Users } from "./users.model";
 import bcrypt from "bcrypt";
@@ -10,6 +10,7 @@ import { createToken } from "./user.utils";
 import { sendEmail } from "../../utility/sendEmail";
 import { BloodRequest } from "../bloodRequest/blood.request.model";
 import { BookModel } from "../Book/book.model";
+import { tutionModel } from "../Tution/tution.model";
 const createUserForDb = async (playood: TUser) => {
   const isExist = await Users.findOne({ email: playood.email });
   if (isExist) {
@@ -161,7 +162,19 @@ const chengePasswordForDb = async (
 
   return result;
 };
+const totalDataForDb = async () => {
+  const result = await Users.countDocuments({});
+  const result1 = await BloodRequest.countDocuments({});
+  const result2 = await BookModel.countDocuments({});
+  const result3 = await tutionModel.countDocuments({});
 
+  return {
+    totallUser: result,
+    totallBloodRequest: result1,
+    totallBookRequest: result2,
+    totallTusationRequest: result3,
+  };
+};
 const forgotPasswordForDb = async (userEmail: string) => {
   const isUserExist = await Users.findOne({
     email: userEmail,
@@ -192,13 +205,13 @@ const resetPasswordForDb = async (
   const isUserExist = await Users.findOne({
     _id: playood.id,
   });
-  
+
   if (!isUserExist) {
     throw new Error("user not found");
   }
   const decoded = jwt.verify(token, confing.jwt_scrict as string) as JwtPayload;
   const user = await Users.findOne({ _id: playood?.id });
-  console.log("user services ",user)
+  console.log("user services ", user);
   if (!user) {
     throw new Error("you are  unauthorization");
   }
@@ -224,13 +237,12 @@ const resetPasswordForDb = async (
   return null;
 };
 
-const getSingleUserFromDBById=async (userid:string)=>{
-  
-  const query={_id:new ObjectId(userid)}
-  const result=await Users.find(query)
-  
-  return result
-}
+const getSingleUserFromDBById = async (userid: string) => {
+  console.log(userid);
+  const result = await Users.findById(userid);
+
+  return result;
+};
 const updateSocilLinkUsersForDb = async (email: string, playood: TLinks) => {
   console.log(email);
   const result = await Users.findOneAndUpdate({ email: email }, playood, {
@@ -239,19 +251,6 @@ const updateSocilLinkUsersForDb = async (email: string, playood: TLinks) => {
   return result;
 };
 
-const totalDataForDb = async () => {
-  const result = (await Users.find({})).length;
-  const result1 = (await BloodRequest.find({})).length;
-  const result2 = (await BookModel.find({})).length;
-  const result3 = (await Users.find({})).length;
-
-  return {
-    totallUser: result,
-    totallBloodRequest: result1,
-    totallBookRequest: result2,
-    totallTusationRequest: result3,
-  };
-};
 export const usersServices = {
   createUserForDb,
   getAllUsersForDb,
@@ -266,7 +265,7 @@ export const usersServices = {
   chengePasswordForDb,
   forgotPasswordForDb,
   resetPasswordForDb,
-  getSingleUserFromDBById,
   updateSocilLinkUsersForDb,
+  getSingleUserFromDBById,
   totalDataForDb,
 };

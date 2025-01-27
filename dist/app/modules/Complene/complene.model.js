@@ -6,6 +6,6 @@ const compleneSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     phone: { type: String, required: true },
-    message: { type: String, required: true }
+    message: { type: String, required: true },
 });
-exports.compleneModel = (0, mongoose_1.model)('complenes', compleneSchema);
+exports.compleneModel = (0, mongoose_1.model)("complenes", compleneSchema);

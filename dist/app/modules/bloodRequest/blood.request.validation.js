@@ -9,16 +9,13 @@ const bloodRequestValidationSchema = zod_1.z.object({
         patientContactNumber: zod_1.z
             .string()
             .min(1, "Patient contact number is required"),
-        patientAge: zod_1.z
-            .number()
-            .int()
-            .min(0, "Patient age must be a positive number"),
+        patientAge: zod_1.z.string(),
         patientBloodGroup: zod_1.z.enum([...blood_request_constant_1.BloodGroup]),
-        bagsNeeded: zod_1.z.number().int().min(1, "At least one bag is required"),
+        bagsNeeded: zod_1.z.string(),
         neededByDeadline: zod_1.z.string(),
         hospitalAddress: zod_1.z.string().min(1, "Hospital address is required"),
-        hospitalName: zod_1.z.string().min(1, "Hospital name is required"),
-        requesterGender: zod_1.z.enum([...blood_request_constant_1.Genders]),
+        hospitalName: zod_1.z.string().min(1, "Hospital name is required").optional(),
+        gender: zod_1.z.enum([...blood_request_constant_1.Genders]),
         status: zod_1.z
             .enum([...blood_request_constant_1.Status])
             .optional()

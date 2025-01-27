@@ -41,15 +41,16 @@ const getSingleUser = asyncCatch(async (req, res) => {
   });
 });
 
-const getSingleUserById=asyncCatch(async (req,res)=>{
-    const id=req.params.userid
-    const result=await usersServices.getSingleUserFromDBById(id)
-    res.status(200).json({
-        success:true,
-        message:"Get single User successfully",
-        data:result
-    })
-})
+const getSingleUserById = asyncCatch(async (req, res) => {
+  const id = req.params.userid;
+  console.log("hello data", id);
+  const result = await usersServices.getSingleUserFromDBById(id);
+  res.status(200).json({
+    success: true,
+    message: "Get single User successfully",
+    data: result,
+  });
+});
 const updateSingleUser = asyncCatch(async (req, res) => {
   const { userId } = req.params;
   const playood = req.body;
@@ -152,9 +153,7 @@ const forgotPassword = asyncCatch(async (req, res) => {
   });
 });
 const totalData = asyncCatch(async (req, res) => {
-  console.log("Sanim bhai")
   const result = await usersServices.totalDataForDb();
-  console.log("Sanim bhai ",result)
   res.status(200).json({
     success: true,
     message: "totall data for db",
@@ -163,13 +162,13 @@ const totalData = asyncCatch(async (req, res) => {
 });
 const resetPasswor = asyncCatch(async (req, res) => {
   const token = req?.headers?.authorization?.split(" ")[1];
-  console.log("it is token ",token)
+  console.log("it is token ", token);
   const playood = req?.body;
   const result = await usersServices.resetPasswordForDb(
     playood,
     token as string
   );
-  console.log(result)
+  console.log(result);
   res.status(200).json({
     success: true,
     message: "success fully updated your password please login !",

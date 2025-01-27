@@ -7,19 +7,19 @@ const bloodRequestSchema = new Schema<TBloodRequest>(
     patientName: { type: String, required: true },
     patientEmail: { type: String },
     patientContactNumber: { type: String, required: true },
-    patientAge: { type: Number, required: true },
+    patientAge: { type: String, required: true },
     patientBloodGroup: {
       type: String,
       enum: BloodGroup,
       required: true,
     },
 
-    bagsNeeded: { type: Number, required: true },
+    bagsNeeded: { type: String, required: true },
     neededByDeadline: { type: String, required: true },
     hospitalAddress: { type: String, required: true },
-    hospitalName: { type: String, required: true },
-    
-    requesterGender: {
+    hospitalName: { type: String, required: false },
+
+    gender: {
       type: String,
       enum: Genders,
       required: true,

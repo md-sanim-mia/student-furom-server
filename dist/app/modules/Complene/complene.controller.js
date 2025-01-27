@@ -18,7 +18,7 @@ const createComplene = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
     res.status(200).json({
         success: true,
         message: "Complene Created Successfully",
-        data: result
+        data: result,
     });
 }));
 const getAllComplene = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -26,7 +26,7 @@ const getAllComplene = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
     res.status(200).json({
         success: true,
         message: "Get all complene successfully",
-        data: result
+        data: result,
     });
 }));
 const deleteComplene = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,9 +35,11 @@ const deleteComplene = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
     res.status(200).json({
         success: true,
         message: "Complene deleted successfully",
-        data: result
+        data: result,
     });
 }));
 exports.compleneContrller = {
-    createComplene, deleteComplene, getAllComplene
+    createComplene,
+    deleteComplene,
+    getAllComplene,
 };

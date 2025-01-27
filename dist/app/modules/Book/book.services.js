@@ -17,11 +17,10 @@ const createBookIntoDB = (playload) => __awaiter(void 0, void 0, void 0, functio
     return result;
 });
 const getAllBookFromDB = (search) => __awaiter(void 0, void 0, void 0, function* () {
-    const query = search ? {
-        $or: [
-            { category: { $regex: search, $options: "i" } },
-        ],
-    }
+    const query = search
+        ? {
+            $or: [{ category: { $regex: search, $options: "i" } }],
+        }
         : {};
     const result = yield book_model_1.BookModel.find(query);
     return result;
@@ -44,7 +43,9 @@ const updateBookFromDB = (id, updateDoc) => __awaiter(void 0, void 0, void 0, fu
     return result;
 });
 exports.bookServices = {
-    createBookIntoDB, getAllBookFromDB,
-    deleteBookFromDB, updateBookFromDB,
-    getSingleBookFromDB
+    createBookIntoDB,
+    getAllBookFromDB,
+    deleteBookFromDB,
+    updateBookFromDB,
+    getSingleBookFromDB,
 };

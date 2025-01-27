@@ -18,11 +18,11 @@ const createBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0,
     res.status(200).json({
         success: true,
         message: "Book created successfully",
-        data: result
+        data: result,
     });
 }));
 const getAllBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let search = '';
+    let search = "";
     if (req.query.q) {
         search = String(req.query.q);
     }
@@ -30,7 +30,7 @@ const getAllBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0,
     res.status(200).json({
         success: true,
         message: "Get All Book successfully",
-        data: result
+        data: result,
     });
 }));
 const getSingleBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -39,7 +39,7 @@ const getSingleBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void
     res.status(200).json({
         success: true,
         message: "Get single book successfully",
-        data: result
+        data: result,
     });
 }));
 const deleteBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -48,21 +48,24 @@ const deleteBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0,
     res.status(200).json({
         success: true,
         message: "Delete Book successfully",
-        data: result
+        data: result,
     });
 }));
 const updateBook = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log('update');
+    console.log("update");
     const id = req.params.id;
     const updateDoc = req.body;
     const result = yield book_services_1.bookServices.updateBookFromDB(id, updateDoc);
     res.status(200).json({
         success: true,
         message: "Book updated successfully",
-        data: result
+        data: result,
     });
 }));
 exports.bookContrller = {
-    createBook, getAllBook, deleteBook, updateBook,
-    getSingleBook
+    createBook,
+    getAllBook,
+    deleteBook,
+    updateBook,
+    getSingleBook,
 };
