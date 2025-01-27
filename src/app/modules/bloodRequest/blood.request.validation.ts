@@ -10,7 +10,7 @@ const bloodRequestValidationSchema = z.object({
       .min(1, "Patient contact number is required"),
     patientAge: z.string(),
     patientBloodGroup: z.enum([...BloodGroup] as [string, ...string[]]),
-    bagsNeeded: z.date(),
+    bagsNeeded: z.string(),
     neededByDeadline: z.string(),
     hospitalAddress: z.string().min(1, "Hospital address is required"),
     hospitalName: z.string().min(1, "Hospital name is required").optional(),

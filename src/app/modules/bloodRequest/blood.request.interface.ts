@@ -20,7 +20,7 @@ export type TBloodRequest = {
   patientBloodGroup: TBloodGroups;
 
   bagsNeeded: string;
-  neededByDeadline: Date;
+  neededByDeadline: string;
   hospitalAddress: string;
   hospitalName?: string;
   status?: TStatus;

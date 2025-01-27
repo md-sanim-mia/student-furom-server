@@ -16,7 +16,7 @@ const bloodRequestSchema = new Schema<TBloodRequest>(
     },
 
     bagsNeeded: { type: String, required: true },
-    neededByDeadline: { type: Date, required: true },
+    neededByDeadline: { type: String, required: true },
     hospitalAddress: { type: String, required: true },
     hospitalName: { type: String, required: false },
 
