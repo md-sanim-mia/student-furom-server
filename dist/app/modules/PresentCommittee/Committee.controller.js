@@ -17,7 +17,7 @@ const getAllCommittee = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(vo
     res.status(200).json({
         success: true,
         message: "All committee geted succesfully",
-        data: result
+        data: result,
     });
 }));
 const createCommittee = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -27,7 +27,7 @@ const createCommittee = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(vo
     res.status(200).json({
         success: true,
         message: "Committee created succesfully",
-        data: result
+        data: result,
     });
 }));
 const deleteCommittee = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -36,7 +36,7 @@ const deleteCommittee = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(vo
     res.status(200).json({
         success: true,
         message: "Committee deleted successfully",
-        data: result
+        data: result,
     });
 }));
 const updateCommittee = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -46,10 +46,12 @@ const updateCommittee = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(vo
     res.status(200).json({
         success: true,
         message: "Committee updated successfully",
-        data: result
+        data: result,
     });
 }));
 exports.CommitteController = {
-    createCommittee, deleteCommittee,
-    getAllCommittee, updateCommittee
+    createCommittee,
+    deleteCommittee,
+    getAllCommittee,
+    updateCommittee,
 };

@@ -50,11 +50,12 @@ const getSingleUser = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void
 }));
 const getSingleUserById = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.userid;
+    console.log("hello data", id);
     const result = yield users_service_1.usersServices.getSingleUserFromDBById(id);
     res.status(200).json({
         success: true,
         message: "Get single User successfully",
-        data: result
+        data: result,
     });
 }));
 const updateSingleUser = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -146,9 +147,7 @@ const forgotPassword = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
     });
 }));
 const totalData = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("Sanim bhai");
     const result = yield users_service_1.usersServices.totalDataForDb();
-    console.log("Sanim bhai ", result);
     res.status(200).json({
         success: true,
         message: "totall data for db",

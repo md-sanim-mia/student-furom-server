@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.usersServices = void 0;
 const queryBuilder_1 = __importDefault(require("../../builder/queryBuilder"));
 const confing_1 = __importDefault(require("../../confing"));
-const mongodb_1 = require("mongodb");
 const users_const_1 = require("./users.const");
 const users_model_1 = require("./users.model");
 const bcrypt_1 = __importDefault(require("bcrypt"));
@@ -24,6 +23,7 @@ const user_utils_1 = require("./user.utils");
 const sendEmail_1 = require("../../utility/sendEmail");
 const blood_request_model_1 = require("../bloodRequest/blood.request.model");
 const book_model_1 = require("../Book/book.model");
+const tution_model_1 = require("../Tution/tution.model");
 const createUserForDb = (playood) => __awaiter(void 0, void 0, void 0, function* () {
     const isExist = yield users_model_1.Users.findOne({ email: playood.email });
     if (isExist) {
@@ -129,6 +129,18 @@ const chengePasswordForDb = (userData, playood) => __awaiter(void 0, void 0, voi
     }
     return result;
 });
+const totalDataForDb = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield users_model_1.Users.countDocuments({});
+    const result1 = yield blood_request_model_1.BloodRequest.countDocuments({});
+    const result2 = yield book_model_1.BookModel.countDocuments({});
+    const result3 = yield tution_model_1.tutionModel.countDocuments({});
+    return {
+        totallUser: result,
+        totallBloodRequest: result1,
+        totallBookRequest: result2,
+        totallTusationRequest: result3,
+    };
+});
 const forgotPasswordForDb = (userEmail) => __awaiter(void 0, void 0, void 0, function* () {
     const isUserExist = yield users_model_1.Users.findOne({
         email: userEmail,
@@ -173,8 +185,8 @@ const resetPasswordForDb = (playood, token) => __awaiter(void 0, void 0, void 0,
     return null;
 });
 const getSingleUserFromDBById = (userid) => __awaiter(void 0, void 0, void 0, function* () {
-    const query = { _id: new mongodb_1.ObjectId(userid) };
-    const result = yield users_model_1.Users.find(query);
+    console.log(userid);
+    const result = yield users_model_1.Users.findById(userid);
     return result;
 });
 const updateSocilLinkUsersForDb = (email, playood) => __awaiter(void 0, void 0, void 0, function* () {
@@ -183,18 +195,6 @@ const updateSocilLinkUsersForDb = (email, playood) => __awaiter(void 0, void 0, 
         new: true,
     }).select("-password");
     return result;
-});
-const totalDataForDb = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = (yield users_model_1.Users.find({})).length;
-    const result1 = (yield blood_request_model_1.BloodRequest.find({})).length;
-    const result2 = (yield book_model_1.BookModel.find({})).length;
-    const result3 = (yield users_model_1.Users.find({})).length;
-    return {
-        totallUser: result,
-        totallBloodRequest: result1,
-        totallBookRequest: result2,
-        totallTusationRequest: result3,
-    };
 });
 exports.usersServices = {
     createUserForDb,
@@ -210,7 +210,7 @@ exports.usersServices = {
     chengePasswordForDb,
     forgotPasswordForDb,
     resetPasswordForDb,
-    getSingleUserFromDBById,
     updateSocilLinkUsersForDb,
+    getSingleUserFromDBById,
     totalDataForDb,
 };

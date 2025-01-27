@@ -17,7 +17,7 @@ const getAllTuion = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0
     res.status(200).json({
         success: true,
         message: "All tution geted succesfully",
-        data: result
+        data: result,
     });
 }));
 const createTuion = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -26,7 +26,7 @@ const createTuion = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0
     res.status(200).json({
         success: true,
         message: "Tution request created succesfully",
-        data: result
+        data: result,
     });
 }));
 const deleteTuion = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,7 +35,7 @@ const deleteTuion = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0
     res.status(200).json({
         success: true,
         message: "Tution Request deleted successfully",
-        data: result
+        data: result,
     });
 }));
 const getSingleTution = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -44,9 +44,12 @@ const getSingleTution = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(vo
     res.status(200).json({
         success: true,
         message: "Get single tution successfully",
-        data: result
+        data: result,
     });
 }));
 exports.tutionController = {
-    deleteTuion, getAllTuion, createTuion, getSingleTution
+    deleteTuion,
+    getAllTuion,
+    createTuion,
+    getSingleTution,
 };

@@ -17,7 +17,7 @@ const getAllSchedule = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
     res.status(200).json({
         success: true,
         message: "All schedule geted succesfully",
-        data: result
+        data: result,
     });
 }));
 const createShedule = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -26,7 +26,7 @@ const createShedule = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void
     res.status(200).json({
         success: true,
         message: "schedule created succesfully",
-        data: result
+        data: result,
     });
 }));
 const deleteSchedule = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,7 +35,7 @@ const deleteSchedule = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
     res.status(200).json({
         success: true,
         message: "schedule deleted successfully",
-        data: result
+        data: result,
     });
 }));
 const updateSchedule = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -45,10 +45,12 @@ const updateSchedule = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
     res.status(200).json({
         success: true,
         message: "Book updated successfully",
-        data: result
+        data: result,
     });
 }));
 exports.scheduleController = {
-    createShedule, deleteSchedule,
-    updateSchedule, getAllSchedule
+    createShedule,
+    deleteSchedule,
+    updateSchedule,
+    getAllSchedule,
 };

@@ -1,6 +1,6 @@
 import queryBuilders from "../../builder/queryBuilder";
 import confing from "../../confing";
-import { ObjectId } from "mongodb";
+
 import { userSearchbleFields } from "./users.const";
 import { Users } from "./users.model";
 import bcrypt from "bcrypt";

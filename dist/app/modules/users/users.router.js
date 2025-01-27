@@ -13,7 +13,8 @@ const router = express_1.default.Router();
 router.post("/create-user", (0, validationRequest_1.validationRequest)(users_validation_1.usersValidation.usersValidationSchema), users_controllar_1.usersContllors.createUsers);
 router.get("/get-users", users_controllar_1.usersContllors.getAllUsers);
 router.get("/", users_controllar_1.usersContllors.getSingleUser);
-router.get('/:userid', users_controllar_1.usersContllors.getSingleUserById);
+router.get("/totall-data", users_controllar_1.usersContllors.totalData);
+router.get("/:userid", users_controllar_1.usersContllors.getSingleUserById);
 router.patch("/:userId", (0, validationRequest_1.validationRequest)(users_validation_1.usersValidation.usersUpdateValidationSchema), users_controllar_1.usersContllors.updateSingleUser);
 router.delete("/:userId", users_controllar_1.usersContllors.deleteSingleUser);
 router.patch("/black-user/:userId", users_controllar_1.usersContllors.blockSingleUser);
@@ -25,5 +26,4 @@ router.post("/chenge-password", (0, validationRequest_1.validationRequest)(users
 router.post("/forget-password", (0, validationRequest_1.validationRequest)(users_validation_1.usersValidation.forgetPasswordValidationSchema), users_controllar_1.usersContllors.forgotPassword);
 router.post("/reset-password", (0, validationRequest_1.validationRequest)(users_validation_1.usersValidation.resetPasswordValidationSchema), users_controllar_1.usersContllors.resetPasswor);
 router.post("/update-link", (0, validationRequest_1.validationRequest)(users_validation_1.usersValidation.updateSocilLinkValidationSchema), users_controllar_1.usersContllors.updateSocilLink);
-router.get("/totall-data", users_controllar_1.usersContllors.totalData);
 exports.usersRouters = router;

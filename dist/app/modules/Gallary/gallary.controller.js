@@ -18,7 +18,7 @@ const createGallary = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void
     res.status(200).json({
         success: true,
         message: "Gallary created succesfully",
-        data: result
+        data: result,
     });
 }));
 const getAllGallary = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -26,7 +26,7 @@ const getAllGallary = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void
     res.status(200).json({
         success: true,
         message: "All gallary geted succesfully",
-        data: result
+        data: result,
     });
 }));
 const deleteGallary = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,9 +35,11 @@ const deleteGallary = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void
     res.status(200).json({
         success: true,
         message: "Gallary deleted successfully",
-        data: result
+        data: result,
     });
 }));
 exports.gallaryControllers = {
-    createGallary, getAllGallary, deleteGallary
+    createGallary,
+    getAllGallary,
+    deleteGallary,
 };

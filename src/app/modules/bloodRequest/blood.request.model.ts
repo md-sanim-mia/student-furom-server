@@ -25,15 +25,15 @@ const bloodRequestSchema = new Schema<TBloodRequest>(
       required: true,
     },
     status: {
-      type: String,
-      enum: Status,
+      type:String,
+      enum:Status,
       required: false,
       default: "pending",
     },
   },
   { timestamps: true }
 );
-
+bloodRequestSchema.index({ createdAt: 1 }, { expireAfterSeconds: 12 * 24 * 60 * 60  });
 export const BloodRequest = model<TBloodRequest>(
   "BloodRequest",
   bloodRequestSchema

@@ -19,12 +19,12 @@ const Committee_routes_1 = require("../modules/PresentCommittee/Committee.routes
 const router = express_1.default.Router();
 const modulesRouter = [
     {
-        path: '/blog',
-        route: blog_router_1.blogRoutes
+        path: "/blog",
+        route: blog_router_1.blogRoutes,
     },
     {
-        path: '/book',
-        route: book_routes_1.bookRouters
+        path: "/book",
+        route: book_routes_1.bookRouters,
     },
     {
         path: "/schedule",
@@ -47,29 +47,29 @@ const modulesRouter = [
         route: users_router_1.usersRouters,
     },
     {
-        path: '/add',
-        route: Advertising_toutr_1.AdvertisngRoutes
+        path: "/add",
+        route: Advertising_toutr_1.AdvertisngRoutes,
     },
     {
-        path: '/previousCommitte',
-        route: previousCommitte_route_1.PreviousRouters
+        path: "/previousCommitte",
+        route: previousCommitte_route_1.PreviousRouters,
     },
     {
-        path: '/gallary',
-        route: gallary_routes_1.GallaryRouters
+        path: "/gallary",
+        route: gallary_routes_1.GallaryRouters,
     },
     {
-        path: '/magazine',
-        route: magazine_route_1.MagazineRouters
+        path: "/magazine",
+        route: magazine_route_1.MagazineRouters,
     },
     {
-        path: '/tution',
-        route: tution_routes_1.tutionRoutes
+        path: "/tution",
+        route: tution_routes_1.tutionRoutes,
     },
     {
-        path: '/committee',
-        route: Committee_routes_1.CommitteRoutes
-    }
+        path: "/committee",
+        route: Committee_routes_1.CommitteRoutes,
+    },
 ];
 modulesRouter.forEach((route) => router.use(route.path, route.route));
 exports.default = router;

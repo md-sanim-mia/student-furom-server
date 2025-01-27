@@ -33,6 +33,8 @@ const updateScheduleFromDB = (id, updateDoc) => __awaiter(void 0, void 0, void 0
     return result;
 });
 exports.scheduleServices = {
-    createScheduleIntoDB, deleteScheduleIntoDB,
-    updateScheduleFromDB, getAllSceduleFormDB
+    createScheduleIntoDB,
+    deleteScheduleIntoDB,
+    updateScheduleFromDB,
+    getAllSceduleFormDB,
 };

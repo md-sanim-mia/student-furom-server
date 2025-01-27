@@ -13,9 +13,9 @@ exports.CommitteeServices = void 0;
 const Committee_model_1 = require("./Committee.model");
 const mongodb_1 = require("mongodb");
 const createCommitteeIntoDB = (playload) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log('services ', playload);
+    console.log("services ", playload);
     const result = yield Committee_model_1.CommitteeModel.create(playload);
-    console.log('resutl ', result);
+    console.log("resutl ", result);
     return result;
 });
 const getAllCommitteeFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,6 +35,8 @@ const updateCommitteeFromDB = (id, updateDoc) => __awaiter(void 0, void 0, void 
     return result;
 });
 exports.CommitteeServices = {
-    createCommitteeIntoDB, deletePCommitteesFromDB,
-    updateCommitteeFromDB, getAllCommitteeFromDB
+    createCommitteeIntoDB,
+    deletePCommitteesFromDB,
+    updateCommitteeFromDB,
+    getAllCommitteeFromDB,
 };

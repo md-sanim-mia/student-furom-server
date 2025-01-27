@@ -9,8 +9,9 @@ const tutionSchema = new mongoose_1.Schema({
     student_gender: { type: String, required: true },
     teacher_need: { type: String, required: true },
     salary: { type: Number, required: true },
-    class: { type: String, required: true }
+    class_s: { type: String, required: true }
 }, {
     timestamps: true,
 });
+tutionSchema.index({ createdAt: 1 }, { expireAfterSeconds: 15 * 24 * 60 * 60 });
 exports.tutionModel = (0, mongoose_1.model)('tutionRequest', tutionSchema);

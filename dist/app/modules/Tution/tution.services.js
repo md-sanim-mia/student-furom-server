@@ -31,6 +31,8 @@ const getSingleTutionReqFromDB = (id) => __awaiter(void 0, void 0, void 0, funct
     return result;
 });
 exports.tuionServices = {
-    getAllTutionFormDB, createTutionIntoDB,
-    deleteTutionIntoDB, getSingleTutionReqFromDB
+    getAllTutionFormDB,
+    createTutionIntoDB,
+    deleteTutionIntoDB,
+    getSingleTutionReqFromDB,
 };
