@@ -1,7 +1,6 @@
 import { model, Schema } from "mongoose";
 import { TBloodRequest } from "./blood.request.interface";
 import { BloodGroup, Genders, Status } from "./blood.request.constant";
-import { string } from "zod";
 
 const bloodRequestSchema = new Schema<TBloodRequest>(
   {

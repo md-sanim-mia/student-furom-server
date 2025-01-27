@@ -22,29 +22,32 @@ const deleteBlogFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () 
     return result;
 });
 const updateBlogFromDB = (id, updateDoc) => __awaiter(void 0, void 0, void 0, function* () {
-    const query = { _id: new mongodb_1.ObjectId(id) };
-    const update = { $set: updateDoc };
     const option = { new: true };
-    const result = yield blog_model_1.blogModel.updateOne(query, update, option);
+    const result = yield blog_model_1.blogModel.findByIdAndUpdate(id, updateDoc, option);
     return result;
 });
 const getSingleBlogFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const query = { _id: new mongodb_1.ObjectId(id) };
-    const result = yield blog_model_1.blogModel.find(query);
+    const result = yield blog_model_1.blogModel.findById(id);
     return result;
 });
 const getAllBlogFromDB = (search) => __awaiter(void 0, void 0, void 0, function* () {
-    const query = search ? {
-        $or: [
-            { title: { $regex: search, $options: "i" } },
-        ],
-    }
+    const query = search
+        ? {
+            $or: [{ title: { $regex: search, $options: "i" } }],
+        }
         : {};
     const result = yield blog_model_1.blogModel.find(query);
     return result;
 });
+const getMyBlogFromDB = (playload) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield blog_model_1.blogModel.find({ email: playload });
+    return result;
+});
 exports.blogServices = {
-    createBlogIntoDB, deleteBlogFromDB,
-    updateBlogFromDB, getSingleBlogFromDB,
-    getAllBlogFromDB
+    createBlogIntoDB,
+    deleteBlogFromDB,
+    updateBlogFromDB,
+    getSingleBlogFromDB,
+    getAllBlogFromDB,
+    getMyBlogFromDB,
 };

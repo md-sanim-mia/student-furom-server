@@ -21,6 +21,11 @@ const deleteCompleneFromDB = (id) => __awaiter(void 0, void 0, void 0, function*
     const result = yield complene_model_1.compleneModel.deleteOne(query);
     return result;
 });
+const getAllCompleneFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield complene_model_1.compleneModel.find();
+    return result;
+});
 exports.compleneServices = {
-    createCompleneIntoDB, deleteCompleneFromDB
+    createCompleneIntoDB, deleteCompleneFromDB,
+    getAllCompleneFromDB
 };

@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.bloodRequestRouter = void 0;
 const express_1 = __importDefault(require("express"));
 const validationRequest_1 = require("../../middlwares/validationRequest");
 const blood_request_validation_1 = __importDefault(require("./blood.request.validation"));
@@ -13,3 +14,6 @@ router.get("/get-blood-request", blood_request_controllar_1.bloodRequestControll
 router.get("/:bloodRequestId", blood_request_controllar_1.bloodRequestControllar.getSingleBloodRequest);
 router.get("/pending-blood-request", blood_request_controllar_1.bloodRequestControllar.pendingBloodRequest);
 router.delete("/:bloodRequestId", blood_request_controllar_1.bloodRequestControllar.deletedSingleBloodRequest);
+router.patch("/approved-request/:bloodRequestId", blood_request_controllar_1.bloodRequestControllar.approvedSingleBloodRequest);
+router.patch("/rejected-request/:bloodRequestId", blood_request_controllar_1.bloodRequestControllar.rejectedSingleBloodRequest);
+exports.bloodRequestRouter = router;
