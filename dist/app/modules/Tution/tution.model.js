@@ -9,8 +9,8 @@ const tutionSchema = new mongoose_1.Schema({
     student_gender: { type: String, required: true },
     teacher_need: { type: String, required: true },
     salary: { type: Number, required: true },
-    class: { type: String, required: true }
+    class: { type: String, required: true },
 }, {
     timestamps: true,
 });
-exports.tutionModel = (0, mongoose_1.model)('tutionRequest', tutionSchema);
+exports.tutionModel = (0, mongoose_1.model)("tutionRequest", tutionSchema);

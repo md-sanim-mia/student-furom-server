@@ -18,7 +18,7 @@ const createMagazine = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
     res.status(200).json({
         success: true,
         message: "Magazine created succesfully",
-        data: result
+        data: result,
     });
 }));
 const getAllMagazine = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -26,7 +26,7 @@ const getAllMagazine = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
     res.status(200).json({
         success: true,
         message: "All magazine geted succesfully",
-        data: result
+        data: result,
     });
 }));
 const deleteMagazine = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,9 +35,11 @@ const deleteMagazine = (0, async_catch_1.asyncCatch)((req, res) => __awaiter(voi
     res.status(200).json({
         success: true,
         message: "Magazine deleted successfully",
-        data: result
+        data: result,
     });
 }));
 exports.MagazineControllers = {
-    createMagazine, getAllMagazine, deleteMagazine
+    createMagazine,
+    getAllMagazine,
+    deleteMagazine,
 };

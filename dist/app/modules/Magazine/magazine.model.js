@@ -9,4 +9,4 @@ const MagazineSchema = new mongoose_1.Schema({
     description: { type: String, required: true },
     written_by: { type: String, required: true },
 });
-exports.MagazineModel = (0, mongoose_1.model)('magazine', MagazineSchema);
+exports.MagazineModel = (0, mongoose_1.model)("magazine", MagazineSchema);

@@ -26,6 +26,7 @@ const getAllCompleneFromDB = () => __awaiter(void 0, void 0, void 0, function* (
     return result;
 });
 exports.compleneServices = {
-    createCompleneIntoDB, deleteCompleneFromDB,
-    getAllCompleneFromDB
+    createCompleneIntoDB,
+    deleteCompleneFromDB,
+    getAllCompleneFromDB,
 };

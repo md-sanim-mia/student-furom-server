@@ -8,6 +8,6 @@ const previousSchema = new mongoose_1.Schema({
     image: { type: String, required: true },
     designation: { type: String, required: true },
     address: { type: String, required: true },
-    department: { type: String, required: true }
+    department: { type: String, required: true },
 });
-exports.PreviousModel = (0, mongoose_1.model)('previousCommitte', previousSchema);
+exports.PreviousModel = (0, mongoose_1.model)("previousCommitte", previousSchema);

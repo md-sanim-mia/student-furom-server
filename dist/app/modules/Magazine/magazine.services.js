@@ -26,5 +26,7 @@ const deleteMagazineFromDB = (id) => __awaiter(void 0, void 0, void 0, function*
     return result;
 });
 exports.MagazineServices = {
-    createMagazineIntoDB, getAllMagazineFromDB, deleteMagazineFromDB
+    createMagazineIntoDB,
+    getAllMagazineFromDB,
+    deleteMagazineFromDB,
 };

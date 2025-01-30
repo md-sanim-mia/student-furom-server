@@ -194,7 +194,7 @@ const forgotPasswordForDb = async (userEmail: string) => {
     "6m"
   );
 
-  const resetUiLink = `http://localhost:5173/reset-password/${isUserExist?._id}/${accessToken}`;
+  const resetUiLink = `https://hcsf-frontend.vercel.app/reset-password/${isUserExist?._id}/${accessToken}`;
   sendEmail(isUserExist.email, resetUiLink);
 };
 

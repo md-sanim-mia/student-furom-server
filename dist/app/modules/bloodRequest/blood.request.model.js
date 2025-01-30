@@ -7,17 +7,17 @@ const bloodRequestSchema = new mongoose_1.Schema({
     patientName: { type: String, required: true },
     patientEmail: { type: String },
     patientContactNumber: { type: String, required: true },
-    patientAge: { type: Number, required: true },
+    patientAge: { type: String, required: true },
     patientBloodGroup: {
         type: String,
         enum: blood_request_constant_1.BloodGroup,
         required: true,
     },
-    bagsNeeded: { type: Number, required: true },
+    bagsNeeded: { type: String, required: true },
     neededByDeadline: { type: String, required: true },
     hospitalAddress: { type: String, required: true },
-    hospitalName: { type: String, required: true },
-    requesterGender: {
+    hospitalName: { type: String, required: false },
+    gender: {
         type: String,
         enum: blood_request_constant_1.Genders,
         required: true,

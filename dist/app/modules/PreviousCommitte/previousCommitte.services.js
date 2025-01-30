@@ -26,6 +26,7 @@ const deletePriviousFromDB = (id) => __awaiter(void 0, void 0, void 0, function*
     return result;
 });
 exports.previousServices = {
-    createPreviousIntoDB, deletePriviousFromDB,
-    getAllPreviousFromDB
+    createPreviousIntoDB,
+    deletePriviousFromDB,
+    getAllPreviousFromDB,
 };
